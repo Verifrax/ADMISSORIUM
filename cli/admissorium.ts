@@ -5,6 +5,8 @@ import { buildAcceptedGraph } from "../graph/builders/accepted-graph-builder.js"
 import { discoverLocalRepos } from "../graph/builders/live-inventory-builder.js";
 import { loadGovernedRepos } from "../graph/loaders/governed-repos-loader.js";
 import { loadLicenseRegistry } from "../graph/loaders/licenses-loader.js";
+import { loadPackageRegistry } from "../graph/loaders/packages-loader.js";
+import { packageRegistryInvariant, type ObservedPackage } from "../invariants/package-registry.js";
 import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
 import { licenseConsistencyInvariant } from "../invariants/license-consistency.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
@@ -45,6 +47,7 @@ function main(): void {
 
   const governedRepos = loadGovernedRepos(root);
   const licenseRegistry = loadLicenseRegistry(root);
+  const packageRegistry = loadPackageRegistry(root);
   const acceptedGraph = buildAcceptedGraph(governedRepos.repos, governedRepos.source);
   const liveInventory = discoverLocalRepos(root, org);
   const findings: Finding[] = [];
@@ -72,6 +75,32 @@ function main(): void {
           readText(join(entry.path, "README.md")),
           expected.license,
           licenseRegistry.source
+        )
+      );
+    }
+
+    if (packageRegistry.present) {
+      const observedPackages: ObservedPackage[] = [];
+
+      for (const entry of liveInventory) {
+        const packageJsonPath = join(entry.path, "package.json");
+        if (!existsSync(packageJsonPath)) continue;
+
+        const parsed = JSON.parse(readFileSync(packageJsonPath, "utf8")) as { name?: unknown };
+        if (typeof parsed.name !== "string" || parsed.name.length === 0) continue;
+
+        observedPackages.push({
+          repo: entry.repo,
+          name: parsed.name,
+          path: `${entry.repo}:package.json`
+        });
+      }
+
+      findings.push(
+        ...packageRegistryInvariant(
+          packageRegistry.entries,
+          observedPackages,
+          packageRegistry.source
         )
       );
     }
