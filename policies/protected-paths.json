@@ -1,0 +1,95 @@
+{
+  "schema": "admissorium.protected-paths.v1",
+  "version": "0.2.0-boundary",
+  "status": "ACTIVE_TRUTH",
+  "purpose": "Define path classes that ADMISSORIUM actuator code must not automatically mutate.",
+  "default_decision": "ALLOW_PROJECTION_REPAIR",
+  "protected_decision": "DENY_AUTOMATIC_MUTATION",
+  "governance_review_decision": "REQUIRES_GOVERNANCE_REVIEW",
+  "classes": [
+    {
+      "id": "constitutional-law",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["law/**", "laws/**", "constitution/**", "constitutional/**", "invariants/**", "roles/**", "schemas/law/**"],
+      "reason": "Constitutional law must not be rewritten by an actuator."
+    },
+    {
+      "id": "accepted-state",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["current/**", "epochs/current/**", "state/current/**", "accepted/current/**", "indexes/current/**"],
+      "reason": "Accepted current state must remain under lawful acceptance path."
+    },
+    {
+      "id": "authority",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["authorities/current/**", "authority/current/**", "freezes/**", "revocations/current/**"],
+      "reason": "Authority and freeze objects must not be silently mutated."
+    },
+    {
+      "id": "execution-receipts",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["receipts/current/**", "execution/receipts/current/**", "runs/current/**"],
+      "reason": "Execution receipts are evidence-bearing objects."
+    },
+    {
+      "id": "verification-results",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["verification/results/current/**", "verifications/current/**", "verdicts/current/**"],
+      "reason": "Verification outputs must not be rewritten by projection repair."
+    },
+    {
+      "id": "terminal-recognition",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["recognitions/current/**", "recognition/current/**"],
+      "reason": "Recognition objects are terminal epistemic surfaces."
+    },
+    {
+      "id": "terminal-recourse",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["recourses/current/**", "recourse/current/**"],
+      "reason": "Recourse objects are terminal procedural surfaces."
+    },
+    {
+      "id": "claims",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["claims/current/**", "claim-classes/current/**"],
+      "reason": "Claim admission and current claims require explicit governance path."
+    },
+    {
+      "id": "continuity-transfer",
+      "decision": "DENY_AUTOMATIC_MUTATION",
+      "patterns": ["continuity/current/**", "transfer/current/**", "succession/current/**"],
+      "reason": "Continuity and transfer objects protect survivability."
+    },
+    {
+      "id": "governance-registries",
+      "decision": "REQUIRES_GOVERNANCE_REVIEW",
+      "patterns": [".github/GOVERNED_REPOS.txt", ".github/LICENSES.json", ".github/PACKAGES.json", ".github/REPO_CLASSES.json", "governance/**", "registries/**"],
+      "reason": "Registry proposals may be candidates only; direct automatic mutation is forbidden."
+    },
+    {
+      "id": "release-control",
+      "decision": "REQUIRES_GOVERNANCE_REVIEW",
+      "patterns": ["VERSION", "package.json", "package-lock.json", ".github/workflows/release-check.yml"],
+      "reason": "Release and package control surfaces require explicit review."
+    }
+  ],
+  "projection_repair_allowed_examples": [
+    "README.md",
+    "docs/**",
+    "reports/**",
+    "projections/**",
+    "public/**",
+    "site/**",
+    "surfaces/**"
+  ],
+  "absolute_forbidden_operations": [
+    "delete protected object",
+    "rewrite protected current truth",
+    "force-push main",
+    "commit directly to main",
+    "publish package",
+    "mutate secret",
+    "change repository administration"
+  ]
+}
