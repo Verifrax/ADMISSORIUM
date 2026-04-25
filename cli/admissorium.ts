@@ -6,7 +6,9 @@ import { discoverLocalRepos } from "../graph/builders/live-inventory-builder.js"
 import { loadGovernedRepos } from "../graph/loaders/governed-repos-loader.js";
 import { loadLicenseRegistry } from "../graph/loaders/licenses-loader.js";
 import { loadPackageRegistry } from "../graph/loaders/packages-loader.js";
+import { loadRepoClassRegistry } from "../graph/loaders/repo-classes-loader.js";
 import { packageRegistryInvariant, type ObservedPackage } from "../invariants/package-registry.js";
+import { repoClassRegistryInvariant } from "../invariants/repo-class-registry.js";
 import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
 import { licenseConsistencyInvariant } from "../invariants/license-consistency.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
@@ -48,6 +50,7 @@ function main(): void {
   const governedRepos = loadGovernedRepos(root);
   const licenseRegistry = loadLicenseRegistry(root);
   const packageRegistry = loadPackageRegistry(root);
+  const repoClassRegistry = loadRepoClassRegistry(root);
   const acceptedGraph = buildAcceptedGraph(governedRepos.repos, governedRepos.source);
   const liveInventory = discoverLocalRepos(root, org);
   const findings: Finding[] = [];
@@ -61,6 +64,16 @@ function main(): void {
         liveInventory.map((entry) => entry.repo)
       )
     );
+
+    if (repoClassRegistry.present) {
+      findings.push(
+        ...repoClassRegistryInvariant(
+          governedRepos.repos,
+          repoClassRegistry.entries,
+          repoClassRegistry.source
+        )
+      );
+    }
 
     const licensesByRepo = new Map(licenseRegistry.entries.map((entry) => [entry.repo, entry]));
 
