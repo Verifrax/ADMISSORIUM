@@ -1,0 +1,2 @@
+import type { Finding } from "../src/types.js";
+export function hostOwnerInvariant(hostOwners:Record<string,string[]>):Finding[]{return Object.entries(hostOwners).filter(([,owners])=>new Set(owners).size>1).map(([host,owners])=>({finding_id:"RED-HOST-OWNER-CONFLICT",severity:"RED" as const,repo:"Verifrax/.github",surface:host,invariant:"one_host_one_owner_repo",expected:"exactly one owner repo",observed:owners,source_of_truth:".github/governance/HOSTS.json",autofix_allowed:false,recommended_action:"Resolve host ownership through registry review."}));}

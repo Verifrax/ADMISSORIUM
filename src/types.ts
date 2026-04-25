@@ -1,0 +1,6 @@
+export type SurfaceStatus="ACTIVE_TRUTH"|"DERIVED_PROJECTION"|"HISTORICAL_RECORD"|"QUARANTINED_SURFACE"|"REPAIR_CANDIDATE"|"EXTERNAL_REFERENCE";
+export type AdmissibilityVerdict="ADMISSIBLE"|"ADMISSIBLE_AS_PROJECTION_REPAIR"|"REQUIRES_ACCEPTANCE_ACT"|"INADMISSIBLE"|"QUARANTINED";
+export type Severity="RED"|"YELLOW"|"GREEN";
+export interface GraphNode{id:string;type:"Repo"|"Host"|"Package"|"License"|"Role"|"SurfaceType"|"TruthObject"|"Projection"|"HistoricalSurface"|"QuarantinedSurface"|"AuthorityBinding"|"ExecutionReceiptBinding"|"VerificationBinding"|"RecognitionBinding"|"RecourseBinding"|"ContinuityBinding"|"TransferBinding";status:SurfaceStatus;owner_repo:string;source_of_truth:string;may_autofix:boolean;admissibility:AdmissibilityVerdict;metadata?:Record<string,unknown>;}
+export interface Finding{finding_id:string;severity:Severity;repo:string;surface:string;invariant:string;expected:unknown;observed:unknown;source_of_truth:string;autofix_allowed:boolean;recommended_action:string;}
+export interface AdmissibilityReport{run_id:string;started_at:string;org:string;mode:"audit"|"repair-projection"|"candidate-registry"|"block"|"quarantine";accepted_graph_ref:string;candidate_graph_ref:string;verdict:AdmissibilityVerdict;red_count:number;yellow_count:number;green_count:number;quarantine_count:number;findings:Finding[];repair_plan_ref:string;}
