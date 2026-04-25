@@ -13,6 +13,7 @@ import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
 import { licenseConsistencyInvariant } from "../invariants/license-consistency.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
 import { renderMarkdownReport } from "../reports/markdown-report.js";
+import { writeHistorySnapshot } from "../reports/history-writer.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
@@ -168,12 +169,21 @@ function main(): void {
     repair_plan_ref: "reports/current/repair-plan.json"
   };
 
+  const repairPlan = compileRepairPlan(findings);
+  const markdownReport = renderMarkdownReport(report);
+
   mkdirSync("reports/current", { recursive: true });
   writeFileSync("reports/current/accepted-graph.json", JSON.stringify(acceptedGraph, null, 2) + "\n");
   writeFileSync("reports/current/candidate-graph.json", JSON.stringify(candidateInventory, null, 2) + "\n");
-  writeFileSync("reports/current/repair-plan.json", JSON.stringify(compileRepairPlan(findings), null, 2) + "\n");
+  writeFileSync("reports/current/repair-plan.json", JSON.stringify(repairPlan, null, 2) + "\n");
   writeFileSync("reports/current/admissibility-report.json", JSON.stringify(report, null, 2) + "\n");
-  writeFileSync("reports/current/admissibility-report.md", renderMarkdownReport(report));
+  writeFileSync("reports/current/admissibility-report.md", markdownReport);
+  writeHistorySnapshot(".", report, {
+    acceptedGraph,
+    candidateGraph: candidateInventory,
+    repairPlan,
+    markdownReport
+  });
 
   console.log(JSON.stringify(report, null, 2));
   process.exit(report.red_count > 0 ? 2 : report.yellow_count > 0 ? 1 : 0);
