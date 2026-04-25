@@ -9,17 +9,18 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "rootDir": ".",
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true
   },
   "include": [
+    "src/**/*.ts",
     "app/**/*.ts",
+    "classifiers/**/*.ts",
     "cli/**/*.ts",
+    "compilers/**/*.ts",
     "graph/**/*.ts",
     "invariants/**/*.ts",
-    "classifiers/**/*.ts",
-    "compilers/**/*.ts",
-    "src/**/*.ts",
-    "tests/**/*.ts",
-    "reports/**/*.ts"
+    "reports/**/*.ts",
+    "tests/**/*.ts"
   ]
 }
