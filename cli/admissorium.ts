@@ -1,9 +1,12 @@
 #!/usr/bin/env node
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { buildAcceptedGraph } from "../graph/builders/accepted-graph-builder.js";
 import { discoverLocalRepos } from "../graph/builders/live-inventory-builder.js";
 import { loadGovernedRepos } from "../graph/loaders/governed-repos-loader.js";
+import { loadLicenseRegistry } from "../graph/loaders/licenses-loader.js";
 import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
+import { licenseConsistencyInvariant } from "../invariants/license-consistency.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
@@ -29,6 +32,11 @@ function verdict(findings: Finding[]): AdmissibilityReport["verdict"] {
   return "ADMISSIBLE";
 }
 
+function readText(path: string): string | null {
+  if (!existsSync(path)) return null;
+  return readFileSync(path, "utf8");
+}
+
 function main(): void {
   const org = arg("--org", "Verifrax");
   const root = arg("--root", "../");
@@ -36,6 +44,7 @@ function main(): void {
   const runId = `admissorium-${started.replace(/[:.]/g, "-")}`;
 
   const governedRepos = loadGovernedRepos(root);
+  const licenseRegistry = loadLicenseRegistry(root);
   const acceptedGraph = buildAcceptedGraph(governedRepos.repos, governedRepos.source);
   const liveInventory = discoverLocalRepos(root, org);
   const findings: Finding[] = [];
@@ -49,6 +58,23 @@ function main(): void {
         liveInventory.map((entry) => entry.repo)
       )
     );
+
+    const licensesByRepo = new Map(licenseRegistry.entries.map((entry) => [entry.repo, entry]));
+
+    for (const entry of liveInventory) {
+      const expected = licensesByRepo.get(entry.repo);
+      if (!expected) continue;
+
+      findings.push(
+        ...licenseConsistencyInvariant(
+          entry.repo,
+          readText(join(entry.path, "LICENSE")),
+          readText(join(entry.path, "README.md")),
+          expected.license,
+          licenseRegistry.source
+        )
+      );
+    }
   }
 
   const candidateInventory = singleRepositoryCiMode
