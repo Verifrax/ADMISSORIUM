@@ -65,3 +65,4 @@ reports/current/green-list.json
 reports/current/quarantine-list.json
 reports/current/merge-verdict.json
 reports/current/acceptance-readiness.json
+!reports/current/actuator-readiness.json

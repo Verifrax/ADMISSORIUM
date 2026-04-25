@@ -35,7 +35,8 @@ function artifacts() {
     greenList: { findings: [] },
     quarantineList: { findings: [] },
     mergeVerdict: { verdict: "PASS" },
-    acceptanceReadiness: { ready: true }
+    acceptanceReadiness: { ready: true },
+    actuatorReadiness: { version: "0.2.0", ready: true, passed_count: 12, failed_count: 0, criteria: [] }
   };
 }
 
@@ -67,7 +68,8 @@ test("writes immutable local history snapshot artifacts", () => {
     };
 
     assert.equal(manifest.immutable_local_snapshot, true);
-    assert.equal(manifest.files.length, 11);
+    assert.equal(manifest.files.length, 12);
+    assert.ok(manifest.files.some((entry: { path: string }) => entry.path === "actuator-readiness.json"));
     assert.equal(manifest.files.every((file) => file.sha256.length === 64), true);
   } finally {
     rmSync(root, { recursive: true, force: true });

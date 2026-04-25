@@ -17,6 +17,7 @@ import { writeHistorySnapshot } from "../reports/history-writer.js";
 import { buildFindingListArtifacts } from "../reports/finding-lists.js";
 import { buildMergeVerdictArtifact } from "../reports/merge-verdict.js";
 import { buildAcceptanceReadinessArtifact } from "../reports/acceptance-readiness.js";
+import { buildActuatorReadiness } from "../reports/actuator-readiness.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
@@ -187,7 +188,8 @@ function main(): void {
     "green-list.json",
     "quarantine-list.json",
     "merge-verdict.json",
-    "acceptance-readiness.json"
+    "acceptance-readiness.json",
+    "actuator-readiness.json"
   ];
   const acceptanceReadiness = buildAcceptanceReadinessArtifact({
     report,
@@ -206,6 +208,8 @@ function main(): void {
     truthMutationAllowed: false
   });
 
+  const actuatorReadiness = buildActuatorReadiness({ root });
+
   mkdirSync("reports/current", { recursive: true });
   writeFileSync("reports/current/accepted-graph.json", JSON.stringify(acceptedGraph, null, 2) + "\n");
   writeFileSync("reports/current/candidate-graph.json", JSON.stringify(candidateInventory, null, 2) + "\n");
@@ -218,6 +222,7 @@ function main(): void {
   writeFileSync("reports/current/quarantine-list.json", JSON.stringify(findingLists.quarantineList, null, 2) + "\n");
   writeFileSync("reports/current/merge-verdict.json", JSON.stringify(mergeVerdict, null, 2) + "\n");
   writeFileSync("reports/current/acceptance-readiness.json", JSON.stringify(acceptanceReadiness, null, 2) + "\n");
+  writeFileSync("reports/current/actuator-readiness.json", JSON.stringify(actuatorReadiness, null, 2) + "\n");
   writeHistorySnapshot(".", report, {
     acceptedGraph,
     candidateGraph: candidateInventory,
@@ -228,7 +233,8 @@ function main(): void {
     greenList: findingLists.greenList,
     quarantineList: findingLists.quarantineList,
     mergeVerdict,
-    acceptanceReadiness
+    acceptanceReadiness,
+    actuatorReadiness
   });
 
   console.log(JSON.stringify(report, null, 2));
