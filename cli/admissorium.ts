@@ -16,6 +16,7 @@ import { renderMarkdownReport } from "../reports/markdown-report.js";
 import { writeHistorySnapshot } from "../reports/history-writer.js";
 import { buildFindingListArtifacts } from "../reports/finding-lists.js";
 import { buildMergeVerdictArtifact } from "../reports/merge-verdict.js";
+import { buildAcceptanceReadinessArtifact } from "../reports/acceptance-readiness.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
@@ -175,6 +176,35 @@ function main(): void {
   const markdownReport = renderMarkdownReport(report);
   const findingLists = buildFindingListArtifacts(report);
   const mergeVerdict = buildMergeVerdictArtifact(report);
+  const currentArtifactPaths = [
+    "admissibility-report.json",
+    "admissibility-report.md",
+    "accepted-graph.json",
+    "candidate-graph.json",
+    "repair-plan.json",
+    "red-list.json",
+    "yellow-list.json",
+    "green-list.json",
+    "quarantine-list.json",
+    "merge-verdict.json",
+    "acceptance-readiness.json"
+  ];
+  const acceptanceReadiness = buildAcceptanceReadinessArtifact({
+    report,
+    acceptedGraphCount: acceptedGraph.length,
+    currentArtifactPaths,
+    implementedCapabilities: [
+      "repo_perimeter_mismatch",
+      "license_registry_consistency",
+      "package_registry_consistency",
+      "repo_class_registry_consistency",
+      "authority_scope_mismatch",
+      "receipt_identity_collision",
+      "merge_verdict_mapping",
+      "history_snapshot_manifest"
+    ],
+    truthMutationAllowed: false
+  });
 
   mkdirSync("reports/current", { recursive: true });
   writeFileSync("reports/current/accepted-graph.json", JSON.stringify(acceptedGraph, null, 2) + "\n");
@@ -187,6 +217,7 @@ function main(): void {
   writeFileSync("reports/current/green-list.json", JSON.stringify(findingLists.greenList, null, 2) + "\n");
   writeFileSync("reports/current/quarantine-list.json", JSON.stringify(findingLists.quarantineList, null, 2) + "\n");
   writeFileSync("reports/current/merge-verdict.json", JSON.stringify(mergeVerdict, null, 2) + "\n");
+  writeFileSync("reports/current/acceptance-readiness.json", JSON.stringify(acceptanceReadiness, null, 2) + "\n");
   writeHistorySnapshot(".", report, {
     acceptedGraph,
     candidateGraph: candidateInventory,
@@ -196,7 +227,8 @@ function main(): void {
     yellowList: findingLists.yellowList,
     greenList: findingLists.greenList,
     quarantineList: findingLists.quarantineList,
-    mergeVerdict
+    mergeVerdict,
+    acceptanceReadiness
   });
 
   console.log(JSON.stringify(report, null, 2));

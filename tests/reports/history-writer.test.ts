@@ -34,7 +34,8 @@ function artifacts() {
     yellowList: { findings: [] },
     greenList: { findings: [] },
     quarantineList: { findings: [] },
-    mergeVerdict: { verdict: "PASS" }
+    mergeVerdict: { verdict: "PASS" },
+    acceptanceReadiness: { ready: true }
   };
 }
 
@@ -54,6 +55,7 @@ test("writes immutable local history snapshot artifacts", () => {
       "green-list.json",
       "quarantine-list.json",
       "merge-verdict.json",
+      "acceptance-readiness.json",
       "manifest.json"
     ]) {
       assert.equal(existsSync(join(dir, file)), true);
@@ -65,7 +67,7 @@ test("writes immutable local history snapshot artifacts", () => {
     };
 
     assert.equal(manifest.immutable_local_snapshot, true);
-    assert.equal(manifest.files.length, 10);
+    assert.equal(manifest.files.length, 11);
     assert.equal(manifest.files.every((file) => file.sha256.length === 64), true);
   } finally {
     rmSync(root, { recursive: true, force: true });
