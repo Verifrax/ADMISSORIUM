@@ -2,11 +2,11 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { buildAcceptedGraph } from "../graph/builders/accepted-graph-builder.js";
 import { discoverLocalRepos } from "../graph/builders/live-inventory-builder.js";
+import { loadGovernedRepos } from "../graph/loaders/governed-repos-loader.js";
 import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
-import { GOVERNED_REPOS_35 } from "../src/constants.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
 
 function arg(name: string, fallback: string): string {
@@ -34,7 +34,9 @@ function main(): void {
   const root = arg("--root", "../");
   const started = new Date().toISOString();
   const runId = `admissorium-${started.replace(/[:.]/g, "-")}`;
-  const acceptedGraph = buildAcceptedGraph();
+
+  const governedRepos = loadGovernedRepos(root);
+  const acceptedGraph = buildAcceptedGraph(governedRepos.repos, governedRepos.source);
   const liveInventory = discoverLocalRepos(root, org);
   const findings: Finding[] = [];
 
@@ -43,7 +45,7 @@ function main(): void {
   if (!singleRepositoryCiMode) {
     findings.push(
       ...repoPerimeterInvariant(
-        [...GOVERNED_REPOS_35],
+        governedRepos.repos,
         liveInventory.map((entry) => entry.repo)
       )
     );
@@ -66,11 +68,11 @@ function main(): void {
       finding_id: "RED-GOVERNED-REPO-COUNT",
       severity: "RED",
       repo: "Verifrax/.github",
-      surface: ".github/governance/GOVERNED_REPOS.txt",
+      surface: governedRepos.source,
       invariant: "no_orphan_surfaces",
       expected: 35,
       observed: acceptedGraph.length,
-      source_of_truth: ".github/governance/GOVERNED_REPOS.txt",
+      source_of_truth: governedRepos.source,
       autofix_allowed: false,
       recommended_action: "Align governed repository registry through governance review."
     });
