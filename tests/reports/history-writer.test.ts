@@ -24,22 +24,38 @@ function report(runId: string): AdmissibilityReport {
   };
 }
 
+function artifacts() {
+  return {
+    acceptedGraph: [{ id: "Verifrax/ADMISSORIUM" }],
+    candidateGraph: [],
+    repairPlan: [],
+    markdownReport: "# Report\n",
+    redList: { findings: [] },
+    yellowList: { findings: [] },
+    greenList: { findings: [] },
+    quarantineList: { findings: [] }
+  };
+}
+
 test("writes immutable local history snapshot artifacts", () => {
   const root = mkdtempSync(join(tmpdir(), "admissorium-history-"));
   try {
-    const dir = writeHistorySnapshot(root, report("admissorium-test-run"), {
-      acceptedGraph: [{ id: "Verifrax/ADMISSORIUM" }],
-      candidateGraph: [],
-      repairPlan: [],
-      markdownReport: "# Report\n"
-    });
+    const dir = writeHistorySnapshot(root, report("admissorium-test-run"), artifacts());
 
-    assert.equal(existsSync(join(dir, "admissibility-report.json")), true);
-    assert.equal(existsSync(join(dir, "admissibility-report.md")), true);
-    assert.equal(existsSync(join(dir, "accepted-graph.json")), true);
-    assert.equal(existsSync(join(dir, "candidate-graph.json")), true);
-    assert.equal(existsSync(join(dir, "repair-plan.json")), true);
-    assert.equal(existsSync(join(dir, "manifest.json")), true);
+    for (const file of [
+      "admissibility-report.json",
+      "admissibility-report.md",
+      "accepted-graph.json",
+      "candidate-graph.json",
+      "repair-plan.json",
+      "red-list.json",
+      "yellow-list.json",
+      "green-list.json",
+      "quarantine-list.json",
+      "manifest.json"
+    ]) {
+      assert.equal(existsSync(join(dir, file)), true);
+    }
 
     const manifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8")) as {
       immutable_local_snapshot: boolean;
@@ -47,7 +63,7 @@ test("writes immutable local history snapshot artifacts", () => {
     };
 
     assert.equal(manifest.immutable_local_snapshot, true);
-    assert.equal(manifest.files.length, 5);
+    assert.equal(manifest.files.length, 9);
     assert.equal(manifest.files.every((file) => file.sha256.length === 64), true);
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -58,16 +74,10 @@ test("refuses to overwrite an existing history snapshot", () => {
   const root = mkdtempSync(join(tmpdir(), "admissorium-history-"));
   try {
     const r = report("admissorium-test-run");
-    const artifacts = {
-      acceptedGraph: [],
-      candidateGraph: [],
-      repairPlan: [],
-      markdownReport: "# Report\n"
-    };
 
-    writeHistorySnapshot(root, r, artifacts);
+    writeHistorySnapshot(root, r, artifacts());
 
-    assert.throws(() => writeHistorySnapshot(root, r, artifacts), /already exists/);
+    assert.throws(() => writeHistorySnapshot(root, r, artifacts()), /already exists/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

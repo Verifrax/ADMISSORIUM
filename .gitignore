@@ -59,3 +59,7 @@ reports/current/admissibility-report.md
 reports/current/accepted-graph.json
 reports/current/candidate-graph.json
 reports/current/repair-plan.json
+reports/current/red-list.json
+reports/current/yellow-list.json
+reports/current/green-list.json
+reports/current/quarantine-list.json
