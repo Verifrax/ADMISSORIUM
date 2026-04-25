@@ -15,6 +15,7 @@ import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
 import { renderMarkdownReport } from "../reports/markdown-report.js";
 import { writeHistorySnapshot } from "../reports/history-writer.js";
 import { buildFindingListArtifacts } from "../reports/finding-lists.js";
+import { buildMergeVerdictArtifact } from "../reports/merge-verdict.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
@@ -173,6 +174,7 @@ function main(): void {
   const repairPlan = compileRepairPlan(findings);
   const markdownReport = renderMarkdownReport(report);
   const findingLists = buildFindingListArtifacts(report);
+  const mergeVerdict = buildMergeVerdictArtifact(report);
 
   mkdirSync("reports/current", { recursive: true });
   writeFileSync("reports/current/accepted-graph.json", JSON.stringify(acceptedGraph, null, 2) + "\n");
@@ -184,6 +186,7 @@ function main(): void {
   writeFileSync("reports/current/yellow-list.json", JSON.stringify(findingLists.yellowList, null, 2) + "\n");
   writeFileSync("reports/current/green-list.json", JSON.stringify(findingLists.greenList, null, 2) + "\n");
   writeFileSync("reports/current/quarantine-list.json", JSON.stringify(findingLists.quarantineList, null, 2) + "\n");
+  writeFileSync("reports/current/merge-verdict.json", JSON.stringify(mergeVerdict, null, 2) + "\n");
   writeHistorySnapshot(".", report, {
     acceptedGraph,
     candidateGraph: candidateInventory,
@@ -192,7 +195,8 @@ function main(): void {
     redList: findingLists.redList,
     yellowList: findingLists.yellowList,
     greenList: findingLists.greenList,
-    quarantineList: findingLists.quarantineList
+    quarantineList: findingLists.quarantineList,
+    mergeVerdict
   });
 
   console.log(JSON.stringify(report, null, 2));
