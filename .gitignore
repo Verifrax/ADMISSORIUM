@@ -1,0 +1,53 @@
+
+# dependencies
+
+node_modules/
+.pnpm-store/
+.yarn/
+.yarn-cache/
+.npm/
+
+# build output
+
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# runtime
+
+.env
+.env.*
+!.env.example
+*.log
+logs/
+
+# secrets / app material
+
+*.pem
+*.key
+*.p8
+private-key*
+webhook-secret*
+.github-app-private-key*
+
+# reports generated locally
+
+reports/current/*.json
+reports/current/*.md
+reports/history/*
+
+# OS / editor
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# caches
+
+.cache/
+.tmp/
+tmp/
