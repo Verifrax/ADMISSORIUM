@@ -1,0 +1,44 @@
+name: release-check
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      statuses: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm run build
+      - run: npm test
+      - run: node dist/cli/admissorium.js audit --org Verifrax --root "$PWD"
+      - run: test -s reports/current/admissibility-report.json
+      - run: test -s reports/current/merge-verdict.json
+      - run: test -s reports/current/acceptance-readiness.json
+      - run: |
+          python3 - <<'PY'
+          import json
+          report=json.load(open("reports/current/admissibility-report.json"))
+          merge=json.load(open("reports/current/merge-verdict.json"))
+          ready=json.load(open("reports/current/acceptance-readiness.json"))
+          assert report["verdict"] == "ADMISSIBLE", report
+          assert report["red_count"] == 0, report
+          assert merge["verdict"] == "PASS", merge
+          assert merge["merge_allowed"] is True, merge
+          assert merge["check_conclusion"] == "success", merge
+          assert ready["version"] == "0.1.0", ready
+          assert ready["ready"] is True, ready
+          assert ready["failed_count"] == 0, ready
+          print("release_check=OK")
+          PY
