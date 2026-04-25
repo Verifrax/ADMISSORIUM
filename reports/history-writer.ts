@@ -14,6 +14,7 @@ export interface HistorySnapshotArtifacts {
   quarantineList: unknown;
   mergeVerdict: unknown;
   acceptanceReadiness: unknown;
+  actuatorReadiness: unknown;
 }
 
 interface ManifestEntry {
@@ -57,6 +58,7 @@ export function writeHistorySnapshot(
   const quarantineListJson = `${JSON.stringify(artifacts.quarantineList, null, 2)}\n`;
   const mergeVerdictJson = `${JSON.stringify(artifacts.mergeVerdict, null, 2)}\n`;
   const acceptanceReadinessJson = `${JSON.stringify(artifacts.acceptanceReadiness, null, 2)}\n`;
+  const actuatorReadinessJson = `${JSON.stringify(artifacts.actuatorReadiness, null, 2)}\n`;
 
   const files = [
     writeArtifact(historyDir, "admissibility-report.json", reportJson),
@@ -69,7 +71,8 @@ export function writeHistorySnapshot(
     writeArtifact(historyDir, "green-list.json", greenListJson),
     writeArtifact(historyDir, "quarantine-list.json", quarantineListJson),
     writeArtifact(historyDir, "merge-verdict.json", mergeVerdictJson),
-    writeArtifact(historyDir, "acceptance-readiness.json", acceptanceReadinessJson)
+    writeArtifact(historyDir, "acceptance-readiness.json", acceptanceReadinessJson),
+    writeArtifact(historyDir, "actuator-readiness.json", actuatorReadinessJson)
   ];
 
   const manifest = {
