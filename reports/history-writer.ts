@@ -8,6 +8,10 @@ export interface HistorySnapshotArtifacts {
   candidateGraph: unknown;
   repairPlan: unknown;
   markdownReport: string;
+  redList: unknown;
+  yellowList: unknown;
+  greenList: unknown;
+  quarantineList: unknown;
 }
 
 interface ManifestEntry {
@@ -45,13 +49,21 @@ export function writeHistorySnapshot(
   const acceptedGraphJson = `${JSON.stringify(artifacts.acceptedGraph, null, 2)}\n`;
   const candidateGraphJson = `${JSON.stringify(artifacts.candidateGraph, null, 2)}\n`;
   const repairPlanJson = `${JSON.stringify(artifacts.repairPlan, null, 2)}\n`;
+  const redListJson = `${JSON.stringify(artifacts.redList, null, 2)}\n`;
+  const yellowListJson = `${JSON.stringify(artifacts.yellowList, null, 2)}\n`;
+  const greenListJson = `${JSON.stringify(artifacts.greenList, null, 2)}\n`;
+  const quarantineListJson = `${JSON.stringify(artifacts.quarantineList, null, 2)}\n`;
 
   const files = [
     writeArtifact(historyDir, "admissibility-report.json", reportJson),
     writeArtifact(historyDir, "admissibility-report.md", artifacts.markdownReport),
     writeArtifact(historyDir, "accepted-graph.json", acceptedGraphJson),
     writeArtifact(historyDir, "candidate-graph.json", candidateGraphJson),
-    writeArtifact(historyDir, "repair-plan.json", repairPlanJson)
+    writeArtifact(historyDir, "repair-plan.json", repairPlanJson),
+    writeArtifact(historyDir, "red-list.json", redListJson),
+    writeArtifact(historyDir, "yellow-list.json", yellowListJson),
+    writeArtifact(historyDir, "green-list.json", greenListJson),
+    writeArtifact(historyDir, "quarantine-list.json", quarantineListJson)
   ];
 
   const manifest = {
