@@ -12,6 +12,7 @@ import { repoClassRegistryInvariant } from "../invariants/repo-class-registry.js
 import { repoPerimeterInvariant } from "../invariants/repo-perimeter.js";
 import { licenseConsistencyInvariant } from "../invariants/license-consistency.js";
 import { compileRepairPlan } from "../compilers/repair-plan-compiler.js";
+import { renderMarkdownReport } from "../reports/markdown-report.js";
 import { classifyRed } from "../classifiers/classify-red.js";
 import { classifyYellow } from "../classifiers/classify-yellow.js";
 import type { AdmissibilityReport, Finding } from "../src/types.js";
@@ -172,6 +173,7 @@ function main(): void {
   writeFileSync("reports/current/candidate-graph.json", JSON.stringify(candidateInventory, null, 2) + "\n");
   writeFileSync("reports/current/repair-plan.json", JSON.stringify(compileRepairPlan(findings), null, 2) + "\n");
   writeFileSync("reports/current/admissibility-report.json", JSON.stringify(report, null, 2) + "\n");
+  writeFileSync("reports/current/admissibility-report.md", renderMarkdownReport(report));
 
   console.log(JSON.stringify(report, null, 2));
   process.exit(report.red_count > 0 ? 2 : report.yellow_count > 0 ? 1 : 0);
