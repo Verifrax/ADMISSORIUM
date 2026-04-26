@@ -42,7 +42,7 @@ jobs:
           assert ready["version"] == "0.1.0", ready
           assert ready["ready"] is True, ready
           assert ready["failed_count"] == 0, ready
-          assert actuator["version"] == "0.2.0", actuator
+          assert actuator["version"] == "0.3.0", actuator
           assert actuator["ready"] is True, actuator
           assert actuator["failed_count"] == 0, actuator
           print("release_check=OK")
