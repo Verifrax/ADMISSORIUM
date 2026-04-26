@@ -1,0 +1,40 @@
+{
+  "schema": "verifrax.admissorium.front_gate.machine_authority.v1",
+  "repository": "Verifrax/ADMISSORIUM",
+  "observatory_role": "front_gate",
+  "truth_owner": false,
+  "sovereign_chamber": false,
+  "owns": [
+    "admissibility_enforcement",
+    "contradiction_blocking",
+    "quarantine_routing",
+    "intake_boundary_decision_receipts",
+    "front_gate_denial_state",
+    "materialization_safety_boundary"
+  ],
+  "must_not_own": [
+    "truth_source",
+    "accepted_state",
+    "sovereign_chamber_authority",
+    "terminal_recognition",
+    "terminal_recourse",
+    "verification_verdicts",
+    "archive_permanence",
+    "execution_authority"
+  ],
+  "valid_transitions": [
+    "claim_to_admissibility",
+    "admissibility_to_authority",
+    "admissibility_to_quarantine",
+    "contradiction_to_denial",
+    "denial_to_recourse"
+  ],
+  "observatory_binding": {
+    "surface": "VERIFRAX-WWW",
+    "object_id": "ADMISSORIUM",
+    "repo_index": 35,
+    "render_role": "front_admissibility_gate",
+    "restricted_emission": "red",
+    "accepted_truth_owner": false
+  }
+}

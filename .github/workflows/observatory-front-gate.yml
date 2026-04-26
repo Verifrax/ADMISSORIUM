@@ -1,0 +1,19 @@
+name: Observatory Front Gate Authority
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  front-gate-authority:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify ADMISSORIUM Observatory front gate machine authority
+        run: node scripts/check-observatory-front-gate-machine-authority.mjs
