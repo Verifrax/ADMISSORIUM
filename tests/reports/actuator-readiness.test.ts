@@ -1,60 +1,118 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { buildActuatorReadiness } from "../../reports/actuator-readiness.js";
+import { dirname, join } from "node:path";
+import assert from "node:assert/strict";
+import test from "node:test";
+import {
+  buildActuatorReadiness,
+  REQUIRED_ACTUATOR_PIPELINE_FILES
+} from "../../reports/actuator-readiness.js";
 
-function touch(root: string, path: string): void {
-  const full = join(root, path);
-  mkdirSync(dirname(full), { recursive: true });
-  writeFileSync(full, "x");
+function tempRoot(): string {
+  return mkdtempSync(join(tmpdir(), "admissorium-actuator-readiness-"));
 }
 
-function completeRoot(): string {
-  const root = mkdtempSync(join(tmpdir(), "admissorium-actuator-readiness-"));
-  for (const path of [
-    "policies/permission-policy.json",
-    "policies/protected-paths.json",
-    "docs/emergency-stop.md",
-    "app/webhook-intake.ts",
-    "tests/github-app/webhook-intake.test.ts",
-    "app/check-run-plan.ts",
-    "tests/github-app/check-run-plan.test.ts",
-    "app/check-run-writer-adapter.ts",
-    "tests/github-app/check-run-writer-adapter.test.ts",
-    "app/quarantine-issue-plan.ts",
-    "tests/github-app/quarantine-issue-plan.test.ts",
-    "app/quarantine-issue-writer-adapter.ts",
-    "tests/github-app/quarantine-issue-writer-adapter.test.ts",
-    "app/projection-repair-pr-plan.ts",
-    "tests/github-app/projection-repair-pr-plan.test.ts",
-    "app/projection-repair-pr-writer-adapter.ts",
-    "tests/github-app/projection-repair-pr-writer-adapter.test.ts",
-    "app/actuator-dry-run-orchestrator.ts",
-    "tests/github-app/actuator-dry-run-orchestrator.test.ts"
-  ]) {
-    touch(root, path);
+function write(root: string, path: string, content = "export const boundary = true;\n"): void {
+  const fullPath = join(root, path);
+  mkdirSync(dirname(fullPath), { recursive: true });
+  writeFileSync(fullPath, content);
+}
+
+function writeAll(root: string): void {
+  for (const path of REQUIRED_ACTUATOR_PIPELINE_FILES) {
+    write(root, path);
   }
-  return root;
 }
 
-test("passes v0.2.0 actuator readiness when boundary objects exist", () => {
-  const report = buildActuatorReadiness({ root: completeRoot() });
+test("passes v0.3.0 actuator readiness when complete plan-only request pipeline exists", () => {
+  const root = tempRoot();
+  try {
+    writeAll(root);
 
-  assert.equal(report.version, "0.2.0");
-  assert.equal(report.ready, true);
-  assert.equal(report.failed_count, 0);
-  assert.equal(report.passed_count, 12);
+    const artifact = buildActuatorReadiness({ root });
+
+    assert.equal(artifact.version, "0.3.0");
+    assert.equal(artifact.ready, true);
+    assert.equal(artifact.failed_count, 0);
+    assert.equal(artifact.boundary.write_behavior, "NONE");
+    assert.equal(artifact.boundary.server_binding, "NONE");
+    assert.equal(artifact.boundary.execution, "PLAN_ONLY");
+    assert.equal(artifact.boundary.token_exchange, "NOT_PERFORMED");
+    assert.equal(artifact.boundary.truth_mutation, false);
+    assert.equal(artifact.boundary.registry_mutation, false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
-test("fails v0.2.0 actuator readiness when token exchange is materialized", () => {
-  const root = completeRoot();
-  touch(root, "app/installation-token.ts");
+test("fails v0.3.0 actuator readiness when request pipeline planner is absent", () => {
+  const root = tempRoot();
+  try {
+    writeAll(root);
+    rmSync(join(root, "app/actuator-request-pipeline-plan.ts"));
 
-  const report = buildActuatorReadiness({ root });
+    const artifact = buildActuatorReadiness({ root });
 
-  assert.equal(report.ready, false);
-  assert.equal(report.failed_count, 1);
-  assert.equal(report.criteria.find((item) => item.id === "V020-012")?.status, "FAIL");
+    assert.equal(artifact.ready, false);
+    assert.equal(
+      artifact.requirements.find((item) => item.path === "app/actuator-request-pipeline-plan.ts")?.status,
+      "FAIL"
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("fails v0.3.0 actuator readiness when server binding is materialized", () => {
+  const root = tempRoot();
+  try {
+    writeAll(root);
+    write(root, "app/webhook-request-handler.ts", "export const server = createServer(() => undefined);\n");
+
+    const artifact = buildActuatorReadiness({ root });
+
+    assert.equal(artifact.ready, false);
+    assert.equal(
+      artifact.forbidden_materialization.find((item) => item.id === "NO_SERVER_BINDING")?.status,
+      "FAIL"
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("fails v0.3.0 actuator readiness when token exchange is materialized", () => {
+  const root = tempRoot();
+  try {
+    writeAll(root);
+    write(root, "app/installation-token-plan.ts", "export const token = createInstallationAccessToken();\n");
+
+    const artifact = buildActuatorReadiness({ root });
+
+    assert.equal(artifact.ready, false);
+    assert.equal(
+      artifact.forbidden_materialization.find((item) => item.id === "NO_INSTALLATION_TOKEN_EXCHANGE")?.status,
+      "FAIL"
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("fails v0.3.0 actuator readiness when repository write is materialized in plan-only path", () => {
+  const root = tempRoot();
+  try {
+    writeAll(root);
+    write(root, "app/actuator-request-pipeline-plan.ts", "export const write = createPullRequest();\n");
+
+    const artifact = buildActuatorReadiness({ root });
+
+    assert.equal(artifact.ready, false);
+    assert.equal(
+      artifact.forbidden_materialization.find((item) => item.id === "NO_REPOSITORY_WRITES")?.status,
+      "FAIL"
+    );
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
