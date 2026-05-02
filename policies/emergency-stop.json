@@ -1,0 +1,25 @@
+{
+  "policy_type": "ADMISSORIUM_EMERGENCY_STOP",
+  "schema_version": "1.0.0",
+  "environment_switch": "ADMISSORIUM_WRITE_DISABLED",
+  "active_default": false,
+  "when_active_disable": [
+    "open_pr",
+    "push_branch",
+    "post_issue",
+    "post_pr_comment",
+    "apply_label",
+    "emit_failing_check_run_if_configured_as_escalation",
+    "write_remote_side_effect"
+  ],
+  "when_active_preserve": [
+    "read",
+    "audit",
+    "emit_local_report",
+    "emit_local_verdict",
+    "emit_history_snapshot",
+    "verify_policy",
+    "verify_graph"
+  ],
+  "bypass_allowed": false
+}

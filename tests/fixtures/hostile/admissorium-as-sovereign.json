@@ -1,0 +1,5 @@
+{
+  "fixture": "admissorium-as-sovereign",
+  "expected_decision": "BLOCKED_ROLE_COLLAPSE",
+  "forbidden_claim": "ADMISSORIUM decides truth"
+}

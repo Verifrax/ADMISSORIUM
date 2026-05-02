@@ -1,0 +1,35 @@
+{
+  "policy_type": "ADMISSORIUM_ROLLOUT_POLICY",
+  "schema_version": "1.0.0",
+  "stages": [
+    "R0_LOCAL_ONLY",
+    "R1_ADMISSORIUM_REPORT_ONLY",
+    "R2_ADMISSORIUM_REQUIRED_CHECK",
+    "R3_ALL_REPOS_REPORT_ONLY",
+    "R4_PROJECTION_REPOS_NEUTRAL_CHECK",
+    "R5_HOST_DOCS_PACKAGE_REPOS_REQUIRED_CHECK",
+    "R6_SUBSTRATE_REPOS_BLOCK_ONLY_NO_REPAIR",
+    "R7_SOVEREIGN_REPOS_BLOCK_ONLY_GOVERNANCE_REVIEW_ONLY"
+  ],
+  "forbid_stage_skip": true,
+  "first_required_check_candidates": [
+    "VERIFRAX-WWW",
+    "VERIFRAX-DOCS",
+    "VERIFRAX-STATUS",
+    "VERIFRAX-SURFACE",
+    "VERIFRAX-PROFILES",
+    "VERIFRAX-SAMPLES",
+    "apply",
+    "proof"
+  ],
+  "not_first_required_check_candidates": [
+    "SYNTAGMARIUM",
+    "ORBISTIUM",
+    "AUCTORISEAL",
+    "CORPIFORM",
+    "VERIFRAX",
+    "ANAGNORIUM",
+    "REGRESSORIUM",
+    "CONSONORIUM"
+  ]
+}

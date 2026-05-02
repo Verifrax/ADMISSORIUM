@@ -1,0 +1,10 @@
+{
+  "policy_type": "ADMISSORIUM_PROJECTION_REPAIR_POLICY",
+  "schema_version": "1.0.0",
+  "mode": "DRY_RUN_ONLY",
+  "requires_projection_only_assertion": true,
+  "requires_human_review": true,
+  "forbidden_if_truth_path_touched": true,
+  "forbidden_if_protected_path_touched": true,
+  "forbidden_if_license_or_package_identity_changed": true
+}

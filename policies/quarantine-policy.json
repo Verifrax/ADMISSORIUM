@@ -1,1 +1,25 @@
-{"policy":"quarantine-policy","delete_on_red":false}
+{
+  "policy_type": "ADMISSORIUM_QUARANTINE_POLICY",
+  "schema_version": "1.0.0",
+  "deletion_allowed": false,
+  "quarantine_classes": [
+    "GOVERNED_REPO_PERIMETER_MISMATCH",
+    "AUTHORITY_SCOPE_MISMATCH",
+    "RECEIPT_IDENTITY_COLLISION",
+    "HOST_ROLE_COLLISION",
+    "PACKAGE_TO_SOURCE_MISMATCH",
+    "ADMISSORIUM_SOVEREIGN_ROLE_CLAIM",
+    "PROTECTED_TRUTH_PATH_MUTATION",
+    "DIRECT_MAIN_WRITE_ATTEMPT",
+    "AUTHORITY_EXPANSION_WITHOUT_REVIEW",
+    "MACHINE_DEFERENCE_OVERCLAIM",
+    "RECOGNITION_RECOURSE_COLLAPSE",
+    "CURRENT_TRUTH_SPLIT"
+  ],
+  "quarantine_actions": [
+    "emit_quarantine_record",
+    "fail_check_run",
+    "open_quarantine_issue_if_enabled",
+    "preserve_forensic_history"
+  ]
+}

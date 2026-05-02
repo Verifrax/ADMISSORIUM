@@ -1,0 +1,5 @@
+{
+  "fixture": "protected-truth-path-mutation",
+  "changed_files": ["current/state.json"],
+  "expected_decision": "BLOCKED_PROTECTED_TRUTH_PATH"
+}

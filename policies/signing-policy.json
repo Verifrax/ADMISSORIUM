@@ -1,0 +1,8 @@
+{
+  "policy_type": "ADMISSORIUM_SIGNING_POLICY",
+  "schema_version": "1.0.0",
+  "algorithm": "ed25519",
+  "private_key_may_be_committed": false,
+  "local_test_signature_allowed": true,
+  "unsigned_verdict_decision": "BLOCKED_UNSIGNED_VERDICT"
+}
