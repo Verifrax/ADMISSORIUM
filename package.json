@@ -14,7 +14,9 @@
     "audit": "node dist/cli/admissorium.js audit --org Verifrax",
     "test": "find dist/tests -type f -name '*.test.js' -print | sort | xargs node --test",
     "admissorium:v020": "node scripts/admissorium-v020-readiness.cjs",
-    "check:v020": "node scripts/admissorium-v020-readiness.cjs"
+    "check:v020": "node scripts/admissorium-v020-readiness.cjs",
+    "check:v040": "node scripts/admissorium-v020-readiness.cjs",
+    "check:control-plane": "node scripts/admissorium-v020-readiness.cjs"
   },
   "engines": {
     "node": ">=20"
