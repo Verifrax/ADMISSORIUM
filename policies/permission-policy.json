@@ -1,129 +1,115 @@
 {
-  "schema": "admissorium.permission-policy.v1",
-  "version": "0.2.0-boundary",
-  "status": "ACTIVE_TRUTH",
-  "purpose": "Define the first GitHub App actuator permission boundary before any write-capable webhook, pull request writer, issue writer, or branch mutation path is introduced.",
-  "doctrine": {
-    "truth_decision": "ADMISSORIUM does not decide truth.",
-    "admissibility_role": "ADMISSORIUM enforces admissibility of materialized surfaces against the accepted VERIFRAX object graph.",
-    "write_order": "Permission and protected-path policy must exist before actuator write power.",
-    "default_write_posture": "Read-only unless an explicit mode, permission, policy class, and protected-path decision all allow the action.",
-    "truth_mutation_posture": "No policy class may allow automatic mutation of sovereign truth objects."
-  },
-  "environment": {
+  "policy_type": "ADMISSORIUM_PERMISSION_POLICY",
+  "schema_version": "1.0.0",
+  "allowed_actions": [
+    "read",
+    "audit",
+    "emit_report",
+    "emit_check_run",
+    "compile_dry_run_repair",
+    "emit_admission_receipt",
+    "emit_actuator_verdict",
+    "emit_quarantine_record"
+  ],
+  "forbidden_actions": [
+    "define_law",
+    "accept_state",
+    "issue_authority",
+    "execute_governed_action",
+    "verify_as_final_source",
+    "recognize_terminal_truth",
+    "assign_recourse",
+    "publish_package",
+    "write_main",
+    "rewrite_current_truth_object",
+    "bypass_governance_review"
+  ],
+  "emergency_stop": {
     "write_disabled_variable": "ADMISSORIUM_WRITE_DISABLED",
-    "write_disabled_true_values": ["1", "true", "TRUE", "yes", "YES", "on", "ON"],
-    "write_disabled_effect": {
-      "disables": [
-        "branch creation",
-        "file mutation",
-        "pull request creation",
-        "issue creation",
-        "status escalation writes",
-        "check-run write escalation"
-      ],
-      "preserves": [
-        "local CLI audit",
-        "read-only graph generation",
-        "report generation",
-        "merge-verdict generation",
-        "readiness generation"
-      ]
-    }
-  },
-  "github_app_permissions": {
-    "required_first_app": {
-      "metadata": "read",
-      "contents": "read",
-      "pull_requests": "write",
-      "issues": "write",
-      "checks": "write",
-      "actions": "read",
-      "pages": "read",
-      "packages": "read",
-      "statuses": "write"
-    },
-    "forbidden_first_app": {
-      "administration": "write",
-      "secrets": "write",
-      "variables": "write",
-      "environments": "write",
-      "deployments": "write",
-      "members": "write",
-      "packages": "write",
-      "contents": "write"
-    },
-    "escalation_rule": "Any request for forbidden permission must be classified as governance review and must not be accepted by default."
+    "when_active_disable": [
+      "open_pr",
+      "push_branch",
+      "post_issue",
+      "post_pr_comment",
+      "apply_label",
+      "emit_failing_check_run_if_configured_as_escalation",
+      "write_remote_side_effect"
+    ],
+    "when_active_preserve": [
+      "read",
+      "audit",
+      "emit_local_report",
+      "emit_local_verdict",
+      "emit_history_snapshot",
+      "verify_policy",
+      "verify_graph"
+    ]
   },
   "modes": {
     "audit": {
-      "writes_allowed": false,
-      "description": "Read-only inspection and artifact generation."
+      "may_emit_reports": true,
+      "may_emit_check_runs": false,
+      "may_open_projection_repair_pr": false,
+      "may_open_quarantine_issue": false,
+      "may_write_repository_contents": false
     },
     "block": {
-      "writes_allowed": true,
-      "allowed_write_classes": ["CHECK_RUN"],
-      "description": "Check-run conclusion only; no source mutation."
+      "may_emit_reports": true,
+      "may_emit_check_runs": true,
+      "may_open_projection_repair_pr": false,
+      "may_open_quarantine_issue": false,
+      "may_write_repository_contents": false
     },
-    "repair-projection": {
-      "writes_allowed": true,
-      "allowed_write_classes": ["PROJECTION_REPAIR_BRANCH", "PROJECTION_REPAIR_PULL_REQUEST"],
-      "description": "Projection-only repair proposal. Protected truth paths remain blocked."
-    },
-    "candidate-registry": {
-      "writes_allowed": true,
-      "allowed_write_classes": ["REGISTRY_CANDIDATE_PULL_REQUEST"],
-      "description": "Candidate registry proposal requiring governance review. No direct truth mutation."
-    },
-    "quarantine": {
-      "writes_allowed": true,
-      "allowed_write_classes": ["QUARANTINE_ISSUE", "QUARANTINE_MARKER_PULL_REQUEST"],
-      "description": "Quarantine marker or issue creation. No deletion and no silent repair."
-    },
-    "emergency-stop": {
-      "writes_allowed": false,
-      "description": "All write-capable actuator behavior disabled."
+    "projection_repair": {
+      "may_emit_reports": true,
+      "may_emit_check_runs": true,
+      "may_open_projection_repair_pr": true,
+      "may_open_quarantine_issue": false,
+      "may_write_repository_contents": false
     }
   },
-  "write_classes": {
-    "CHECK_RUN": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": false
-    },
-    "PROJECTION_REPAIR_BRANCH": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": true,
-      "protected_path_behavior": "deny"
-    },
-    "PROJECTION_REPAIR_PULL_REQUEST": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": false
-    },
-    "REGISTRY_CANDIDATE_PULL_REQUEST": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": true,
-      "protected_path_behavior": "governance_review"
-    },
-    "QUARANTINE_ISSUE": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": false
-    },
-    "QUARANTINE_MARKER_PULL_REQUEST": {
-      "allowed": true,
-      "requires_write_disabled_false": true,
-      "may_touch_repository_contents": true,
-      "protected_path_behavior": "deny"
-    },
-    "TRUTH_MUTATION": {
-      "allowed": false,
-      "requires_governance_acceptance_act": true,
-      "may_touch_repository_contents": true,
-      "protected_path_behavior": "deny"
-    }
+  "forbidden_first_app": [
+    "administration:write",
+    "contents:write",
+    "secrets:write",
+    "variables:write",
+    "environments:write",
+    "deployments:write",
+    "packages:write",
+    "members:write"
+  ],
+  "protected_paths": [
+    "law/**",
+    "laws/**",
+    "freeze/**",
+    "freezes/**",
+    "current/**",
+    "epochs/current/**",
+    "state/current/**",
+    "authorities/current/**",
+    "receipts/current/**",
+    "verification/results/current/**",
+    "recognitions/current/**",
+    "recourse/current/**",
+    "claims/current/**",
+    "continuity/current/**",
+    "transfer/current/**",
+    "LICENSE",
+    "package.json",
+    ".github/workflows/*release*"
+  ],
+  "registry_paths_require_governance_review": [
+    ".github/GOVERNED_REPOS.txt",
+    ".github/LICENSES.json",
+    ".github/PACKAGES.json",
+    ".github/REPO_CLASSES.json"
+  ],
+  "v040": {
+    "release_name": "Sealed Admissibility Control Plane",
+    "truth_warning": "NOT_TRUTH_SOURCE",
+    "no_truth_mutation": true,
+    "no_direct_main_write": true,
+    "no_package_publish": true,
+    "no_secret_persistence": true
   }
 }

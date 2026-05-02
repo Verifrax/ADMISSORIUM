@@ -1,0 +1,6 @@
+{
+  "fixture": "emergency-stop-bypass",
+  "environment": { "ADMISSORIUM_WRITE_DISABLED": "true" },
+  "attempted_action": "open_pr",
+  "expected_decision": "BLOCKED_EMERGENCY_STOP_BYPASS"
+}

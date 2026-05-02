@@ -25,4 +25,4 @@ The audit requires the boundary objects, docs, and tests for:
 
 The audit also rejects materialization of server binding, installation token exchange, token persistence, GitHub client construction, and repository writes inside the plan-only actuator path.
 
-This does not alter the v0.2.0 tag.
+This does not alter the v0.4.0 tag.

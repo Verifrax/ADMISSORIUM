@@ -1,0 +1,34 @@
+{
+  "policy_type": "ADMISSORIUM_GITHUB_APP_PERMISSION_POLICY",
+  "schema_version": "1.0.0",
+  "minimum_permissions": {
+    "metadata": "read",
+    "contents": "read",
+    "pull_requests": "write",
+    "issues": "write",
+    "checks": "write",
+    "actions": "read",
+    "pages": "read",
+    "packages": "read",
+    "commit_statuses": "write"
+  },
+  "forbidden_permissions": {
+    "administration": "write",
+    "contents": "write",
+    "secrets": "write",
+    "variables": "write",
+    "environments": "write",
+    "deployments": "write",
+    "packages": "write",
+    "members": "write"
+  },
+  "forbidden_secret_material": [
+    "GitHub App private key",
+    "webhook secret",
+    "installation token",
+    "PAT",
+    "signing private key",
+    "package publish token",
+    "cloud credentials"
+  ]
+}
