@@ -46,8 +46,8 @@ function sha256File(file) {
 }
 
 const readiness = {
-  readiness_type: "ADMISSORIUM_V020_READINESS",
-  version: "0.2.0",
+  readiness_type: "ADMISSORIUM_V040_READINESS",
+  version: "0.4.0",
   release_name: "Sealed Admissibility Control Plane",
   ready: failures.length === 0,
   failed_count: failures.length,
@@ -75,7 +75,7 @@ const readiness = {
 
 const policyEvaluation = {
   evaluation_type: "ADMISSORIUM_POLICY_EVALUATION",
-  version: "0.2.0",
+  version: "0.4.0",
   policies: policies.map(([file, json]) => ({
     file,
     policy_type: json.policy_type || null,
@@ -85,7 +85,7 @@ const policyEvaluation = {
 
 const protectedEvaluation = {
   evaluation_type: "ADMISSORIUM_PROTECTED_TRUTH_EVALUATION",
-  version: "0.2.0",
+  version: "0.4.0",
   protected_path_count: protectedPaths.protected_paths.length,
   direct_write_allowed: protectedPaths.if_touched.direct_write_allowed,
   automatic_projection_repair_allowed: protectedPaths.if_touched.automatic_projection_repair_allowed
@@ -93,7 +93,7 @@ const protectedEvaluation = {
 
 const permissionEvaluation = {
   evaluation_type: "ADMISSORIUM_PERMISSION_EVALUATION",
-  version: "0.2.0",
+  version: "0.4.0",
   permission_minimized: true,
   forbidden_permissions: githubPerms.forbidden_permissions,
   forbidden_secret_material: githubPerms.forbidden_secret_material
@@ -101,7 +101,7 @@ const permissionEvaluation = {
 
 const emergencyEvaluation = {
   evaluation_type: "ADMISSORIUM_EMERGENCY_STOP_EVALUATION",
-  version: "0.2.0",
+  version: "0.4.0",
   environment_switch: emergency.environment_switch,
   active: process.env[emergency.environment_switch] === "true",
   bypass_allowed: emergency.bypass_allowed
@@ -110,7 +110,7 @@ const emergencyEvaluation = {
 const verdictBody = {
   verdict_type: "ADMISSORIUM_ACTUATOR_VERDICT",
   schema_version: "1.0.0",
-  admissorium_version: "0.2.0",
+  admissorium_version: "0.4.0",
   run_id: `admissorium-${new Date().toISOString()}`,
   truth_warning: "NOT_TRUTH_SOURCE",
   decision: failures.length ? "POLICY_UNREADABLE" : "ADMISSIBLE_WITH_WARNINGS",
@@ -144,7 +144,7 @@ const verdict = {
 const receiptBody = {
   receipt_type: "ADMISSORIUM_ADMISSION_RECEIPT",
   schema_version: "1.0.0",
-  receipt_id: `adm-v020-${new Date().toISOString()}`,
+  receipt_id: `adm-v040-${new Date().toISOString()}`,
   truth_warning: "NOT_TRUTH_SOURCE",
   decision: verdict.decision,
   bounded_meaning: [
@@ -196,7 +196,7 @@ const quarantine = {
 
 const rollout = {
   evaluation_type: "ADMISSORIUM_ROLLOUT_EVALUATION",
-  version: "0.2.0",
+  version: "0.4.0",
   current_stage: "R1_ADMISSORIUM_REPORT_ONLY",
   org_wide_required_check_enabled: false,
   sovereign_repo_repair_enabled: false
@@ -212,12 +212,12 @@ for (const [name, data] of Object.entries({
   "dry-run-repair-plan.json": dryRun,
   "quarantine-record.json": quarantine,
   "rollout-evaluation.json": rollout,
-  "v020-readiness.json": readiness
+  "v040-readiness.json": readiness
 })) {
   fs.writeFileSync(path.join(outDir, name), JSON.stringify(data, null, 2) + "\n");
 }
 
-const historyDir = path.join("reports/history", `admissorium-v020-${new Date().toISOString().replace(/[:.]/g, "-")}`);
+const historyDir = path.join("reports/history", `admissorium-v040-${new Date().toISOString().replace(/[:.]/g, "-")}`);
 fs.mkdirSync(historyDir, { recursive: true });
 
 for (const file of fs.readdirSync(outDir)) {
@@ -231,7 +231,7 @@ const manifest = fs.readdirSync(historyDir)
     sha256: sha256File(path.join(historyDir, file))
   }));
 
-fs.writeFileSync(path.join(historyDir, "manifest.json"), JSON.stringify({ manifest_type: "ADMISSORIUM_V020_HISTORY_MANIFEST", files: manifest }, null, 2) + "\n");
+fs.writeFileSync(path.join(historyDir, "manifest.json"), JSON.stringify({ manifest_type: "ADMISSORIUM_V040_HISTORY_MANIFEST", files: manifest }, null, 2) + "\n");
 
 console.log(JSON.stringify({ ready: readiness.ready, failed_count: readiness.failed_count, historyDir }, null, 2));
 

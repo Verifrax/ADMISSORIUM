@@ -1,4 +1,4 @@
-# ADMISSORIUM v0.2.0 — Sealed Admissibility Control Plane
+# ADMISSORIUM v0.4.0 — Sealed Admissibility Control Plane
 
 ADMISSORIUM is the sealed admissibility control plane for the VERIFRAX perimeter.
 

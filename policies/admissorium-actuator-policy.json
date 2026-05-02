@@ -1,7 +1,7 @@
 {
   "policy_type": "ADMISSORIUM_ACTUATOR_POLICY",
   "schema_version": "1.0.0",
-  "admissorium_version": "0.2.0",
+  "admissorium_version": "0.4.0",
   "truth_warning": "NOT_TRUTH_SOURCE",
   "primary_role": "sealed-admissibility-control-plane",
   "may_read": true,

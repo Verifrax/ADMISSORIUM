@@ -1,6 +1,6 @@
 {
   "name": "@verifrax/admissorium",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Admissibility enforcement implementation for the VERIFRAX constitutional perimeter.",
   "license": "Apache-2.0",
   "private": true,
