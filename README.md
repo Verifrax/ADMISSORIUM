@@ -41,6 +41,7 @@ The public perimeter contains many materialized surfaces:
 * status surfaces
 * docs surfaces
 * package pages
+* Python SDK / CLI implementation package boundaries
 * public cache and crawler-visible surfaces
 
 ADMISSORIUM enforces admissibility across those surfaces.
@@ -291,3 +292,8 @@ ADMISSORIUM does not decide truth. ADMISSORIUM enforces admissibility of materia
 ## License
 
 Apache License Version 2.0.
+
+
+## VERIFRAX-PY boundary
+
+VERIFRAX-PY is admissible only as an implementation/package boundary. It is not law, accepted state, authority, execution, verification, recognition, or recourse.
