@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-claim-class-projection-addition",
+  "surface": "root projection",
+  "claim": "projection-only-class participates in the active chain",
+  "expected": "RED",
+  "reason": "Projection cannot add claim classes absent from SYNTAGMARIUM admission and ORBISTIUM accepted state."
+}
