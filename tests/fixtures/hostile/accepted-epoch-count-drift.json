@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-accepted-epoch-count-drift",
+  "surface": "status projection",
+  "claim": "accepted epoch has 36 governed repositories",
+  "expected": "RED",
+  "reason": "Accepted epoch count policy must match admissions count policy."
+}
