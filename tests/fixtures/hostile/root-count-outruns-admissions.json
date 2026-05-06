@@ -1,0 +1,9 @@
+{
+  "fixture_id": "hostile-root-count-outruns-admission",
+  "surface": "VERIFRAX-WWW/index.html",
+  "claim": "36 repos live",
+  "accepted_governed_count": 35,
+  "accepted_public_count": 36,
+  "expected": "YELLOW_OR_RED_DEPENDING_LABEL",
+  "reason": "Projection compresses public repository count and governed repository count."
+}
