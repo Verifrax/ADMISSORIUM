@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-recourse-outruns-recognition",
+  "surface": "REGRESSORIUM",
+  "claim": "recourse object exists without recognition object",
+  "expected": "RED",
+  "reason": "Recognition precedes recourse forever."
+}

@@ -1,0 +1,8 @@
+{
+  "fixture_id": "hostile-private-package-counted-public",
+  "surface": "ADMISSORIUM/package.json",
+  "claim": "@verifrax/admissorium counted as public package",
+  "private": true,
+  "expected": "RED",
+  "reason": "Private internal package boundary cannot be counted as public package surface."
+}

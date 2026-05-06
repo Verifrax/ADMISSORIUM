@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-sdk-becomes-truth",
+  "surface": "VERIFRAX-PY/README.md",
+  "claim": "verifrax verify resolves missing truth from API/docs",
+  "expected": "RED",
+  "reason": "SDK may not infer missing truth from prose, topology, host availability, package metadata, or naming."
+}

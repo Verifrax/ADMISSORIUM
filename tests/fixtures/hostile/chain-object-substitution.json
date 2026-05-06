@@ -1,0 +1,8 @@
+{
+  "fixture_id": "hostile-chain-object-substitution",
+  "surface": "root observatory",
+  "claim": "recognition-object-0002 replaces recognition-object-0001",
+  "chain_lock_ref": "minimum-object-chain-lock-0001",
+  "expected": "RED",
+  "reason": "Projection cannot replace active chain object."
+}
