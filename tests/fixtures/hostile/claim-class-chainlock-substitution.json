@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-claim-class-chainlock-substitution",
+  "surface": "root projection",
+  "claim": "recognition-object-0002 replaces recognition-object",
+  "expected": "RED",
+  "reason": "Projection cannot substitute an accepted claim class or chain stage."
+}
