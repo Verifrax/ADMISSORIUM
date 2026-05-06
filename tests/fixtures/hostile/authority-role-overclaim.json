@@ -1,0 +1,6 @@
+{
+  "may_mutate_law": true,
+  "may_mutate_accepted_state": true,
+  "may_mutate_freeze_object": true,
+  "may_infer_missing_truth": true
+}
