@@ -1,0 +1,7 @@
+{
+  "fixture_id": "hostile-accepted-epoch-projection-freshness",
+  "surface": "root projection",
+  "claim": "host deployment freshness advances accepted epoch",
+  "expected": "RED",
+  "reason": "Accepted epoch may not be inferred from host, README, package, commit, status, or ADMISSORIUM report freshness."
+}
