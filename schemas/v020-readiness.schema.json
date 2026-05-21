@@ -1,6 +1,38 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "v040-readiness",
+  "title": "ADMISSORIUM v0.2.0 Readiness",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "readiness_type",
+    "version",
+    "release_name",
+    "ready",
+    "failed_count",
+    "passed"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "readiness_type": {
+      "const": "ADMISSORIUM_V020_READINESS"
+    },
+    "version": {
+      "const": "0.2.0"
+    },
+    "release_name": {
+      "const": "Sealed Admissibility Control Plane"
+    },
+    "ready": {
+      "type": "boolean"
+    },
+    "failed_count": {
+      "type": "number"
+    },
+    "passed": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
 }

@@ -1,0 +1,51 @@
+{
+  "verdict_type": "ADMISSORIUM_ACTUATOR_VERDICT",
+  "schema_version": "1.0.0",
+  "admissorium_version": "0.2.0",
+  "run_id": "admissorium-example-run",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "subject": {
+    "repo": "Verifrax/VERIFRAX-WWW",
+    "event_type": "pull_request",
+    "base_ref": "main",
+    "head_ref": "example"
+  },
+  "surface_classification": {
+    "surface_class": "projection_surface",
+    "truth_path_touched": false,
+    "protected_path_touched": false,
+    "sovereign_surface": false
+  },
+  "policy_evaluation": {
+    "policy_readable": true,
+    "emergency_stop_active": false,
+    "permission_minimized": true,
+    "protected_truth_firewall_passed": true
+  },
+  "graph_evaluation": {
+    "current_truth_split_detected": false,
+    "role_collapse_detected": false
+  },
+  "decision": "PROJECTION_REPAIR_DRY_RUN_ONLY",
+  "merge_effect": {
+    "check_conclusion": "neutral",
+    "merge_allowed": false,
+    "human_review_required": true
+  },
+  "forbidden_actions_confirmed_absent": [
+    "truth_mutation",
+    "direct_main_write",
+    "package_publish",
+    "secret_access",
+    "authority_issuance",
+    "execution_receipt_emission",
+    "verification_finality_claim",
+    "recognition_claim",
+    "recourse_claim"
+  ],
+  "signature": {
+    "algorithm": "local-deterministic-stub",
+    "key_id": "fixture",
+    "signature": "fixture-signature"
+  }
+}

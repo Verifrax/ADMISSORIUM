@@ -1,6 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "protected-truth-paths",
+  "title": "ADMISSORIUM Protected Truth Paths",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "policy_type",
+    "schema_version",
+    "protected_paths",
+    "if_touched"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "policy_type": {
+      "const": "ADMISSORIUM_PROTECTED_TRUTH_PATHS"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "protected_paths": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "if_touched": {
+      "type": "object",
+      "required": [
+        "automatic_projection_repair_allowed",
+        "direct_write_allowed",
+        "required_decision"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "automatic_projection_repair_allowed": {
+          "const": false
+        },
+        "direct_write_allowed": {
+          "const": false
+        },
+        "required_decision": {
+          "const": "GOVERNANCE_REVIEW_REQUIRED_OR_BLOCKED"
+        }
+      }
+    }
+  }
 }

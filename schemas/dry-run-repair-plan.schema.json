@@ -1,6 +1,69 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "dry-run-repair-plan",
+  "title": "ADMISSORIUM Dry-Run Repair Plan",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "repair_plan_type",
+    "schema_version",
+    "truth_warning",
+    "repo",
+    "allowed",
+    "mode",
+    "truth_path_touched",
+    "protected_path_touched",
+    "projection_only_assertion",
+    "files_to_change",
+    "forbidden_files_confirmed_absent",
+    "diff_sha256",
+    "requires_human_review"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "repair_plan_type": {
+      "const": "ADMISSORIUM_DRY_RUN_PROJECTION_REPAIR_PLAN"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "truth_warning": {
+      "const": "NOT_TRUTH_SOURCE"
+    },
+    "repo": {
+      "type": "string"
+    },
+    "allowed": {
+      "type": "boolean"
+    },
+    "mode": {
+      "const": "DRY_RUN_ONLY"
+    },
+    "truth_path_touched": {
+      "const": false
+    },
+    "protected_path_touched": {
+      "const": false
+    },
+    "projection_only_assertion": {
+      "const": true
+    },
+    "files_to_change": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_files_confirmed_absent": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "diff_sha256": {
+      "type": "string"
+    },
+    "requires_human_review": {
+      "const": true
+    }
+  }
 }

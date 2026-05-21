@@ -1,54 +1,24 @@
 {
   "policy_type": "ADMISSORIUM_MUTATION_CLASSIFICATION_POLICY",
   "schema_version": "1.0.0",
-  "decisions": [
-    "ADMISSIBLE",
-    "ADMISSIBLE_WITH_WARNINGS",
-    "PROJECTION_REPAIR_ALLOWED",
-    "PROJECTION_REPAIR_DRY_RUN_ONLY",
-    "GOVERNANCE_REVIEW_REQUIRED",
-    "AUTHORITY_REVIEW_REQUIRED",
-    "STATE_ACCEPTANCE_REQUIRED",
-    "FREEZE_REVIEW_REQUIRED",
-    "RELEASE_REVIEW_REQUIRED",
-    "QUARANTINE_REQUIRED",
-    "BLOCKED_INADMISSIBLE",
-    "BLOCKED_PROTECTED_TRUTH_PATH",
-    "BLOCKED_AUTHORITY_EXPANSION",
-    "BLOCKED_ROLE_COLLAPSE",
-    "BLOCKED_MACHINE_DEFERENCE_OVERCLAIM",
-    "BLOCKED_CURRENT_TRUTH_SPLIT",
-    "BLOCKED_UNSIGNED_VERDICT",
-    "BLOCKED_EMERGENCY_STOP_BYPASS",
-    "EMERGENCY_STOP_ACTIVE",
-    "POLICY_UNREADABLE",
-    "SIGNATURE_UNAVAILABLE"
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "classes": [
+    "projection_repair",
+    "registry_candidate",
+    "protected_truth_mutation",
+    "authority_expansion",
+    "release_mutation",
+    "package_publish_path",
+    "secret_bearing_artifact",
+    "role_collapse",
+    "current_truth_split"
   ],
-  "check_run_mapping": {
-    "success": ["ADMISSIBLE"],
-    "neutral": [
-      "ADMISSIBLE_WITH_WARNINGS",
-      "PROJECTION_REPAIR_ALLOWED",
-      "PROJECTION_REPAIR_DRY_RUN_ONLY",
-      "GOVERNANCE_REVIEW_REQUIRED",
-      "AUTHORITY_REVIEW_REQUIRED",
-      "STATE_ACCEPTANCE_REQUIRED",
-      "FREEZE_REVIEW_REQUIRED",
-      "RELEASE_REVIEW_REQUIRED",
-      "EMERGENCY_STOP_ACTIVE"
-    ],
-    "failure": [
-      "QUARANTINE_REQUIRED",
-      "BLOCKED_INADMISSIBLE",
-      "BLOCKED_PROTECTED_TRUTH_PATH",
-      "BLOCKED_AUTHORITY_EXPANSION",
-      "BLOCKED_ROLE_COLLAPSE",
-      "BLOCKED_MACHINE_DEFERENCE_OVERCLAIM",
-      "BLOCKED_CURRENT_TRUTH_SPLIT",
-      "BLOCKED_UNSIGNED_VERDICT",
-      "BLOCKED_EMERGENCY_STOP_BYPASS",
-      "POLICY_UNREADABLE",
-      "SIGNATURE_UNAVAILABLE"
-    ]
-  }
+  "red_classes": [
+    "protected_truth_mutation",
+    "authority_expansion",
+    "package_publish_path",
+    "secret_bearing_artifact",
+    "role_collapse",
+    "current_truth_split"
+  ]
 }

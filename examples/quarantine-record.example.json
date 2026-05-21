@@ -1,0 +1,20 @@
+{
+  "quarantine_record_type": "ADMISSORIUM_QUARANTINE_RECORD",
+  "schema_version": "1.0.0",
+  "quarantine_id": "adm-q-example-0001",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "subject": {
+    "repo": "Verifrax/example",
+    "path": "README.md",
+    "surface": "public_projection"
+  },
+  "quarantine_class": "MACHINE_DEFERENCE_OVERCLAIM",
+  "reason": "surface claims authority without bounded object evidence",
+  "required_repair": [
+    "downgrade public language",
+    "link to bounded object path",
+    "mark maturity as partial"
+  ],
+  "deletion_allowed": false,
+  "merge_effect": "BLOCKED"
+}
