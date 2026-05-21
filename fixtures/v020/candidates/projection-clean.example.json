@@ -1,0 +1,9 @@
+{
+  "candidate_type": "ADMISSORIUM_CANDIDATE_FIXTURE",
+  "repo": "Verifrax/VERIFRAX-WWW",
+  "summary": "projection-only system page wording improvement",
+  "files": [
+    { "path": "docs/system-boundary.md", "change": "clarify that root router is not accepted truth" },
+    { "path": "index.html", "change": "link system control map" }
+  ]
+}

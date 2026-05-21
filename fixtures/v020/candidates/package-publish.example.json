@@ -1,0 +1,9 @@
+{
+  "candidate_type": "ADMISSORIUM_CANDIDATE_FIXTURE",
+  "repo": "Verifrax/ADMISSORIUM",
+  "summary": "adds npm publish workflow before release law",
+  "files": [
+    { "path": ".github/workflows/publish.yml", "change": "npm publish using packages: write" },
+    { "path": "package.json", "change": "add publish script" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "candidate_type": "ADMISSORIUM_CANDIDATE_FIXTURE",
+  "repo": "Verifrax/VERIFRAX-WWW",
+  "summary": "illegal accepted-state mutation disguised as projection",
+  "files": [
+    { "path": "current/accepted-state.json", "change": "rewrite accepted truth" }
+  ]
+}
