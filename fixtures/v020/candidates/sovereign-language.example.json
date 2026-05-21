@@ -1,0 +1,8 @@
+{
+  "candidate_type": "ADMISSORIUM_CANDIDATE_FIXTURE",
+  "repo": "Verifrax/ADMISSORIUM",
+  "summary": "bad README sentence says ADMISSORIUM decides truth and is source of truth",
+  "files": [
+    { "path": "README.md", "change": "ADMISSORIUM decides truth and is the source of truth for VERIFRAX." }
+  ]
+}

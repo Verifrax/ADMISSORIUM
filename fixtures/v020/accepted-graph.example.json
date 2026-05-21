@@ -1,0 +1,10 @@
+{
+  "graph_type": "ADMISSORIUM_ACCEPTED_GRAPH_FIXTURE",
+  "schema_version": "1.0.0",
+  "truth_warning": "FIXTURE_NOT_TRUTH_SOURCE",
+  "repos": [
+    { "name": "Verifrax/ADMISSORIUM", "class": "admissibility-enforcement" },
+    { "name": "Verifrax/VERIFRAX-WWW", "class": "host-owner" },
+    { "name": "Verifrax/VERIFRAX-STATUS", "class": "host-owner" }
+  ]
+}
