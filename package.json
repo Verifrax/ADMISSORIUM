@@ -20,7 +20,8 @@
     "v020:schema:validate": "node src/schema/validate-v020-objects.js",
     "v020:classify": "node src/v020/evaluate-candidate.js",
     "v020:verdict": "node src/v020/compile-verdict-receipt.js",
-    "v020:quarantine": "node src/v020/route-quarantine-repair.js"
+    "v020:quarantine": "node src/v020/route-quarantine-repair.js",
+    "v020:operator-review": "node src/v020/compile-operator-review-bundle.js"
   },
   "engines": {
     "node": ">=20"
