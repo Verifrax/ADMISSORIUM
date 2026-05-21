@@ -1,0 +1,39 @@
+{
+  "receipt_type": "ADMISSORIUM_ADMISSION_RECEIPT",
+  "schema_version": "1.0.0",
+  "receipt_id": "adm-v020-example-0001",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "subject": {
+    "repo": "Verifrax/VERIFRAX-WWW",
+    "candidate_ref": "sha256:candidate",
+    "base_ref": "sha256:base"
+  },
+  "inputs": {
+    "accepted_graph": {
+      "sha256": "sha256:accepted"
+    },
+    "candidate_graph": {
+      "sha256": "sha256:candidate"
+    },
+    "policy": {
+      "sha256": "sha256:policy"
+    }
+  },
+  "decision": "ADMISSIBLE_WITH_WARNINGS",
+  "bounded_meaning": [
+    "This receipt proves admissibility evaluation only.",
+    "It does not define law.",
+    "It does not accept state.",
+    "It does not issue authority.",
+    "It does not execute.",
+    "It does not verify as final source.",
+    "It does not recognize terminal truth.",
+    "It does not assign recourse."
+  ],
+  "history_snapshot": "reports/history/admissorium-example",
+  "signature": {
+    "algorithm": "local-deterministic-stub",
+    "key_id": "fixture",
+    "signature": "fixture-signature"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "readiness_type": "ADMISSORIUM_V020_READINESS",
+  "version": "0.2.0",
+  "release_name": "Sealed Admissibility Control Plane",
+  "ready": false,
+  "failed_count": 1,
+  "passed": [
+    "policy_schemas_pass",
+    "protected_truth_firewall_pass",
+    "permission_minimization_pass"
+  ]
+}

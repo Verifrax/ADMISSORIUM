@@ -1,6 +1,38 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "mutation-classification-policy",
+  "title": "ADMISSORIUM Mutation Classification Policy",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "policy_type",
+    "schema_version",
+    "truth_warning",
+    "classes",
+    "red_classes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "policy_type": {
+      "const": "ADMISSORIUM_MUTATION_CLASSIFICATION_POLICY"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "truth_warning": {
+      "const": "NOT_TRUTH_SOURCE"
+    },
+    "classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "red_classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
 }

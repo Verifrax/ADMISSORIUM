@@ -1,6 +1,114 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "admissorium-actuator-policy",
+  "title": "ADMISSORIUM Actuator Policy",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "policy_type",
+    "schema_version",
+    "admissorium_version",
+    "truth_warning",
+    "primary_role",
+    "may_read",
+    "may_audit",
+    "may_emit_reports",
+    "may_emit_check_runs",
+    "may_block_merge",
+    "may_quarantine",
+    "may_compile_dry_run_repair",
+    "may_write_main",
+    "may_publish_packages",
+    "may_rewrite_current_truth_objects",
+    "required_proofs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "policy_type": {
+      "const": "ADMISSORIUM_ACTUATOR_POLICY"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "admissorium_version": {
+      "const": "0.2.0"
+    },
+    "truth_warning": {
+      "const": "NOT_TRUTH_SOURCE"
+    },
+    "primary_role": {
+      "const": "sealed-admissibility-control-plane"
+    },
+    "may_read": {
+      "type": "boolean"
+    },
+    "may_audit": {
+      "type": "boolean"
+    },
+    "may_emit_reports": {
+      "type": "boolean"
+    },
+    "may_emit_check_runs": {
+      "type": "boolean"
+    },
+    "may_block_merge": {
+      "type": "boolean"
+    },
+    "may_quarantine": {
+      "type": "boolean"
+    },
+    "may_compile_dry_run_repair": {
+      "type": "boolean"
+    },
+    "may_comment_on_pr": {
+      "type": "boolean"
+    },
+    "may_open_projection_repair_pr": {
+      "type": "boolean"
+    },
+    "may_open_quarantine_issue": {
+      "type": "boolean"
+    },
+    "may_rewrite_current_truth_objects": {
+      "const": false
+    },
+    "may_mutate_law": {
+      "const": false
+    },
+    "may_mutate_accepted_state": {
+      "const": false
+    },
+    "may_modify_freeze_objects": {
+      "const": false
+    },
+    "may_issue_authority": {
+      "const": false
+    },
+    "may_emit_execution_receipts": {
+      "const": false
+    },
+    "may_verify_as_final_source": {
+      "const": false
+    },
+    "may_recognize_terminal_truth": {
+      "const": false
+    },
+    "may_assign_recourse": {
+      "const": false
+    },
+    "may_publish_packages": {
+      "const": false
+    },
+    "may_write_main": {
+      "const": false
+    },
+    "may_bypass_governance_review": {
+      "const": false
+    },
+    "required_proofs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
 }

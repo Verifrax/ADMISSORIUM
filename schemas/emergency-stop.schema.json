@@ -1,6 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "emergency-stop",
+  "title": "ADMISSORIUM Emergency Stop",
   "type": "object",
-  "additionalProperties": true
+  "required": [
+    "policy_type",
+    "schema_version",
+    "canonical_switch",
+    "when_active_disable",
+    "when_active_preserve"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "policy_type": {
+      "const": "ADMISSORIUM_EMERGENCY_STOP"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "canonical_switch": {
+      "const": "ADMISSORIUM_WRITE_DISABLED"
+    },
+    "environment_switch": {
+      "type": "string"
+    },
+    "active_default": {
+      "type": "boolean"
+    },
+    "bypass_allowed": {
+      "type": "boolean"
+    },
+    "when_active_disable": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "when_active_preserve": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
 }
