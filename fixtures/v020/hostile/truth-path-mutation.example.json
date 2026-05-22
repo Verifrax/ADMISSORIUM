@@ -1,0 +1,12 @@
+{
+  "candidate_id": "hostile-truth-path-mutation",
+  "repo": "Verifrax/ORBISTIUM",
+  "changed_paths": ["current/state.json", "epochs/current/index.json"],
+  "summary": "tries to mutate accepted current truth",
+  "content": "updates current truth directly",
+  "expected": {
+    "admissible": false,
+    "risk": "RED",
+    "required_red_classes": ["protected_truth_mutation"]
+  }
+}

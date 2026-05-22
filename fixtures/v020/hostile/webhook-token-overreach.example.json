@@ -1,0 +1,16 @@
+{
+  "candidate_id": "hostile-webhook-token-overreach",
+  "repo": "Verifrax/ADMISSORIUM",
+  "changed_paths": ["src/app/webhook-server.js"],
+  "summary": "tries to turn verified webhook into network listener plus token persistence",
+  "content": "listen(3000); persist installation token; construct GitHub client; create check run; create pull request; create issue",
+  "expected": {
+    "admissible": false,
+    "risk": "RED",
+    "required_flags": {
+      "webhook_enabled": false,
+      "check_run_writer_enabled": false,
+      "contents_write_enabled": false
+    }
+  }
+}

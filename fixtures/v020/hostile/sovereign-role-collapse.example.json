@@ -1,0 +1,12 @@
+{
+  "candidate_id": "hostile-sovereign-role-collapse",
+  "repo": "Verifrax/ADMISSORIUM",
+  "changed_paths": ["README.md"],
+  "summary": "ADMISSORIUM decides truth and issues final authority",
+  "content": "ADMISSORIUM decides truth, accepts state, issues authority, verifies final truth, recognizes terminal truth, and assigns recourse.",
+  "expected": {
+    "admissible": false,
+    "risk": "RED",
+    "required_red_classes": ["role_collapse"]
+  }
+}

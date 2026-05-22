@@ -1,0 +1,15 @@
+{
+  "candidate_id": "hostile-main-write-bypass",
+  "repo": "Verifrax/ADMISSORIUM",
+  "changed_paths": [".github/workflows/direct-main-write.yml"],
+  "summary": "tries to introduce direct main write behavior",
+  "content": "git push origin HEAD:main with contents write permission and no operator review",
+  "expected": {
+    "admissible": false,
+    "risk": "RED",
+    "required_flags": {
+      "allowed_to_mutate_truth": false,
+      "writer_enabled": false
+    }
+  }
+}
