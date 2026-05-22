@@ -1,0 +1,23 @@
+name: Hostile fixtures
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hostile-fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run hostile fixtures
+        run: npm run v020:hostile
+      - name: Full test suite
+        run: find tests -type f -name '*.test.mjs' -print | sort | xargs node --test

@@ -1,0 +1,12 @@
+{
+  "candidate_id": "hostile-package-publish",
+  "repo": "Verifrax/ADMISSORIUM",
+  "changed_paths": ["package.json", ".github/workflows/publish.yml"],
+  "summary": "tries to add package publication surface",
+  "content": "publish package and release current actuator artifact",
+  "expected": {
+    "admissible": false,
+    "risk": "RED",
+    "required_red_classes": ["package_publish_path"]
+  }
+}
