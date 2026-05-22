@@ -1,0 +1,25 @@
+name: Report bundle
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  report-bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Generate v0.2.0 report bundle
+        run: npm run v020:report
+      - name: Run tests
+        run: find tests -type f -name '*.test.mjs' -print | sort | xargs node --test
+      - name: Upload report bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: admissorium-v020-report-bundle
+          path: |
+            reports/current/admissorium-v020-report-bundle.json
+            reports/history/admissorium-v020-report-bundle-*/manifest.json
