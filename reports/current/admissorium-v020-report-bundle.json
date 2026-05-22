@@ -1,0 +1,246 @@
+{
+  "report_writer": "ADMISSORIUM_LOCAL_JSON_REPORT_WRITER",
+  "schema_version": "1.0.0",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "writer_enabled": false,
+  "webhook_enabled": false,
+  "check_run_writer_enabled": false,
+  "pull_request_writer_enabled": false,
+  "issue_writer_enabled": false,
+  "contents_write_enabled": false,
+  "package_publish_enabled": false,
+  "allowed_to_mutate_truth": false,
+  "network_enabled": false,
+  "token_persistence_enabled": false,
+  "generated_at": "2026-05-22T20:57:31.147Z",
+  "run_id": "2026-05-22T20-57-31-147Z",
+  "report": {
+    "suite": "ADMISSORIUM_V020_REPORT_WRITERS_HISTORY_BINDING",
+    "state": "ADMISSORIUM_V020_REPORT_BUNDLE_PASS",
+    "truth_warning": "NOT_TRUTH_SOURCE",
+    "writer_enabled": false,
+    "webhook_enabled": false,
+    "check_run_writer_enabled": false,
+    "pull_request_writer_enabled": false,
+    "issue_writer_enabled": false,
+    "contents_write_enabled": false,
+    "package_publish_enabled": false,
+    "allowed_to_mutate_truth": false,
+    "network_enabled": false,
+    "token_persistence_enabled": false,
+    "total_steps": 8,
+    "passed_steps": 8,
+    "failed_steps": 0,
+    "current_report_count": 31,
+    "current_reports": [
+      {
+        "file": "acceptance-readiness.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/acceptance-readiness.json",
+        "sha256": "3f4d3ed9fbfcdc96131aed1c292273b3b0ee122d958854a8f1e6e8b851a5d74f"
+      },
+      {
+        "file": "accepted-graph.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/accepted-graph.json",
+        "sha256": "ee565bb1c1d6240a88d1fa7c0f4aaebaf6afc77378be5d741cd986424b2b2c8a"
+      },
+      {
+        "file": "actuator-verdict.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/actuator-verdict.json",
+        "sha256": "15355ca92d278831148e0a17c49a40b4af2d185871c31c561d7a0722c9a125cf"
+      },
+      {
+        "file": "admissibility-report.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admissibility-report.json",
+        "sha256": "bbac8614b9143afab4287b303c14f6f2d58a874aa86945b81368b8f7660ebed3"
+      },
+      {
+        "file": "admission-receipt.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admission-receipt.json",
+        "sha256": "7f7855b054b2eac013177363f436a3ca8cd483d9a184c0798f936dceda581c05"
+      },
+      {
+        "file": "admissorium-v020-hostile-fixtures.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admissorium-v020-hostile-fixtures.json",
+        "sha256": "47e9797b9b48fcbe20d73de5bbb61b41885758361f4ad873d5cccdb7e0f97df9"
+      },
+      {
+        "file": "admissorium-v020-report-bundle.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admissorium-v020-report-bundle.json",
+        "sha256": "45fc78cb0cd5e86c51b11d826a39ef5e5a4ff4dc8fe642465ab9683a7eed7529"
+      },
+      {
+        "file": "admissorium-v020-webhook-signature.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admissorium-v020-webhook-signature.json",
+        "sha256": "1196ae745803b9ef6f3bed0b1e46698748027ff02190ae3f544b941976428483"
+      },
+      {
+        "file": "candidate-graph.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/candidate-graph.json",
+        "sha256": "d9c52a61c49f8d1210f905367dff7dbd528d33a3b0b61084a97941fa60b43902"
+      },
+      {
+        "file": "dry-run-repair-plan.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/dry-run-repair-plan.json",
+        "sha256": "f8ff7d3771f75914928db749b6ea3b1ee4f339d742a7e5318f7c9ff53be50dbb"
+      },
+      {
+        "file": "emergency-stop-evaluation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/emergency-stop-evaluation.json",
+        "sha256": "6fe762ef65769ffa7ff21110ee69157c284124c7ef95e4c60ce753c79e40a461"
+      },
+      {
+        "file": "green-list.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/green-list.json",
+        "sha256": "182c9bfc685f4fa48304048a566995cd6b6253f93a3af50906f34eae55f1e25f"
+      },
+      {
+        "file": "merge-verdict.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/merge-verdict.json",
+        "sha256": "3a432c15af9d8bed00d52b6cbd4fe05cc114dfbf91df63c098d770986c396b1c"
+      },
+      {
+        "file": "permission-evaluation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/permission-evaluation.json",
+        "sha256": "21809ae3ba8a91f1275acfc792357de33c71bbda864f7015f51435a6dfe2b76a"
+      },
+      {
+        "file": "policy-evaluation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/policy-evaluation.json",
+        "sha256": "fbaf770117bb0d4d5916dc48f5b88d7913119d3cf6e89d6bc89309714c528ebc"
+      },
+      {
+        "file": "protected-truth-evaluation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/protected-truth-evaluation.json",
+        "sha256": "e45a273dc45011415a5c5fe8f5f198ca3ccff9451ce249a32963f970473ebbed"
+      },
+      {
+        "file": "quarantine-list.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/quarantine-list.json",
+        "sha256": "c3b52a328c5018721ad312111215ce867ddeabdb6a0faf462d6e7211fb593f7c"
+      },
+      {
+        "file": "quarantine-record.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/quarantine-record.json",
+        "sha256": "20e07ae75b586242600df22ac5d263031569ff5c8362bdd0e88d2165f66a88e2"
+      },
+      {
+        "file": "red-list.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/red-list.json",
+        "sha256": "d39e170f8913c91464164dc2811c5be2b8710c59edd4bf25be00e52bbe4632d7"
+      },
+      {
+        "file": "repair-plan.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/repair-plan.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "file": "rollout-evaluation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/rollout-evaluation.json",
+        "sha256": "af7ee6f2a74e78067aa94546f202be55cdb23f9bf68aa1b73e22073a17f4ef72"
+      },
+      {
+        "file": "v020-classifier-comparator.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-classifier-comparator.json",
+        "sha256": "10d66f4ea792a978c3eedc5e94a816953824539eae2ed842b4e6609d499572fb"
+      },
+      {
+        "file": "v020-operator-review-bundle.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-operator-review-bundle.json",
+        "sha256": "f805ef561d4d6275d4dc665c1ad7bea7bb18eba5811c8e6131f4dd61079c4fc4"
+      },
+      {
+        "file": "v020-policy-firewall.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-policy-firewall.json",
+        "sha256": "f77c480a4e2c3b341817dcc9bb8abe421b72516e90a43eca390dac3c83cd1cb0"
+      },
+      {
+        "file": "v020-quarantine-repair-suite.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-quarantine-repair-suite.json",
+        "sha256": "9812d60cedfca679b964b71c15a0fe70b263214b8787c5311f7881139be99d09"
+      },
+      {
+        "file": "v020-readiness.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-readiness.json",
+        "sha256": "b2906e6f33b8f1bbe7b80983dc9b48012fdc68015ec579f0ce60aea5b0ba6f1d"
+      },
+      {
+        "file": "v020-schema-validation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-schema-validation.json",
+        "sha256": "76dd3153ceac6be4e00ac8fc44acd2e15ab439e88816ef6a639a0685f19b9262"
+      },
+      {
+        "file": "v020-test-mode-writer-simulation.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-test-mode-writer-simulation.json",
+        "sha256": "0fa2c4c4a1470db2fc377607812c01778ecee78ea284ec8b3827362e7eb3a3b3"
+      },
+      {
+        "file": "v020-verdict-receipt-suite.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v020-verdict-receipt-suite.json",
+        "sha256": "1b82f222e09b5260621f911e3ff98d079cc8d5c1f3d9b0c7267f804c320794a0"
+      },
+      {
+        "file": "v040-readiness.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/v040-readiness.json",
+        "sha256": "5b76fc3faadc91373a1250acb77572e62fcac14db5fa242bbd6bf12d177c79bc"
+      },
+      {
+        "file": "yellow-list.json",
+        "path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/yellow-list.json",
+        "sha256": "ae086466434919ff69ef5658ed7e2186355bb6e0c68c9e1d4ec8a66a3e23e615"
+      }
+    ],
+    "steps": [
+      {
+        "script": "v020:schema:validate",
+        "expected_token": "ADMISSORIUM_V020_OBJECT_SCHEMAS_PASS=true",
+        "passed": true,
+        "output_sha256": "34f438ea376d02ccdd70e3fe881df1797ff0bf54e8f7c2bd4fa7116e167781e0"
+      },
+      {
+        "script": "v020:classify",
+        "expected_token": "ADMISSORIUM_V020_CLASSIFIER_COMPARATOR_PASS=true",
+        "passed": true,
+        "output_sha256": "2ec446aff34614725964eceb6947375adac51a14fc23e73c3ec7ff09272b30f1"
+      },
+      {
+        "script": "v020:verdict",
+        "expected_token": "ADMISSORIUM_V020_ACTUATOR_VERDICT_RECEIPT_PASS=true",
+        "passed": true,
+        "output_sha256": "3a0bce8f6b56732ff2d80b2f4868d9baa732dfcdcf38f37066745781ed6e4795"
+      },
+      {
+        "script": "v020:quarantine",
+        "expected_token": "ADMISSORIUM_V020_QUARANTINE_REPAIR_PASS=true",
+        "passed": true,
+        "output_sha256": "16c46ab162a8d602deeb8b9147e23ba3d9bee74bf8071cb9c3f00a8eff38a590"
+      },
+      {
+        "script": "v020:operator-review",
+        "expected_token": "ADMISSORIUM_V020_OPERATOR_REVIEW_BUNDLE_PASS=true",
+        "passed": true,
+        "output_sha256": "f353fd95e47287b3e558afed9dd1db307756035d386ef3381aace6b94d4bc9cf"
+      },
+      {
+        "script": "v020:writer-sim",
+        "expected_token": "ADMISSORIUM_V020_TEST_MODE_WRITER_SIMULATION_PASS=true",
+        "passed": true,
+        "output_sha256": "9ff7bcb41ba1e9ee41c23761a6703a2e10f3428ea538ff5864c5b2cdd9a1793f"
+      },
+      {
+        "script": "v020:webhook",
+        "expected_token": "ADMISSORIUM_V020_WEBHOOK_SIGNATURE_VERIFICATION_PASS=true",
+        "passed": true,
+        "output_sha256": "2561f04e077dfc65b5991b177b15f46332280995eeb26648d477fbd6424668b5"
+      },
+      {
+        "script": "v020:hostile",
+        "expected_token": "ADMISSORIUM_V020_HOSTILE_FIXTURES_PASS=true",
+        "passed": true,
+        "output_sha256": "646d79e6b25fe3ca0b3cb07ba8ef674f742446f6b4688286a59da9c28de22274"
+      }
+    ],
+    "history_snapshot_binding": true,
+    "report_only_before_writer": true
+  },
+  "payload_hash_sha256": "43244803198209bcb598ba9f5cab09b8d01b9ac07853a84d19c879486ca780b0"
+}

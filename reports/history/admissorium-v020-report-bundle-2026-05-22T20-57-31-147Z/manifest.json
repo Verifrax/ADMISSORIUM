@@ -1,0 +1,21 @@
+{
+  "manifest": "ADMISSORIUM_REPORT_HISTORY_MANIFEST",
+  "schema_version": "1.0.0",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "writer_enabled": false,
+  "webhook_enabled": false,
+  "check_run_writer_enabled": false,
+  "pull_request_writer_enabled": false,
+  "issue_writer_enabled": false,
+  "contents_write_enabled": false,
+  "package_publish_enabled": false,
+  "allowed_to_mutate_truth": false,
+  "network_enabled": false,
+  "token_persistence_enabled": false,
+  "run_id": "2026-05-22T20-57-31-147Z",
+  "current_path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/current/admissorium-v020-report-bundle.json",
+  "history_path": "/Users/midiakiasat/Downloads/Apps/midiakiasat/VERIFRAX-org/ADMISSORIUM/reports/history/admissorium-v020-report-bundle-2026-05-22T20-57-31-147Z/admissorium-v020-report-bundle.json",
+  "report_name": "admissorium-v020-report-bundle",
+  "report_sha256": "173cbbc1ef90e7ba27d20e8120c5706780239caa7d863a95eff198327b4997b6",
+  "payload_hash_sha256": "43244803198209bcb598ba9f5cab09b8d01b9ac07853a84d19c879486ca780b0"
+}
