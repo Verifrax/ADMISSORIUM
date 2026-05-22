@@ -22,7 +22,8 @@
     "v020:verdict": "node src/v020/compile-verdict-receipt.js",
     "v020:quarantine": "node src/v020/route-quarantine-repair.js",
     "v020:operator-review": "node src/v020/compile-operator-review-bundle.js",
-    "v020:writer-sim": "node src/v020/simulate-test-mode-writer.js"
+    "v020:writer-sim": "node src/v020/simulate-test-mode-writer.js",
+    "v020:webhook": "node src/v020/verify-webhook-signature.js"
   },
   "engines": {
     "node": ">=20"
