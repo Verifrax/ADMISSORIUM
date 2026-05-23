@@ -1,0 +1,8 @@
+{
+  "artifact": "ADMISSORIUM_V020_READINESS_ARTIFACT",
+  "current": "reports/current/admissorium-v020-readiness.json",
+  "history_snapshot": "reports/history/admissorium-v020-readiness-2026-05-23T06-57-35-307Z",
+  "payload_hash_sha256": "9b3c618f89786951eb42e5aacf80a2b9cb5d28d6e0706a6fb7b3ca4ad4af3f8c",
+  "completion_claim": false,
+  "operational_writer_enabled": false
+}

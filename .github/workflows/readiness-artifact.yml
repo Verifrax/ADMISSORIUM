@@ -1,0 +1,24 @@
+name: Readiness artifact
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  readiness-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Compile readiness artifact
+        run: npm run v020:readiness
+      - name: Test readiness artifact
+        run: find tests -type f -name '*.test.mjs' -print | sort | xargs node --test
+      - name: Assert readiness artifact
+        run: |
+          test -f reports/current/admissorium-v020-readiness.json
+          grep -q "ADMISSORIUM_V020_READINESS_ARTIFACT_PASS" reports/current/admissorium-v020-readiness.json
+          grep -q '"operational_writer_enabled": false' reports/current/admissorium-v020-readiness.json
+          grep -q '"completion_claim": false' reports/current/admissorium-v020-readiness.json

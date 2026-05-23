@@ -25,7 +25,8 @@
     "v020:writer-sim": "node src/v020/simulate-test-mode-writer.js",
     "v020:webhook": "node src/v020/verify-webhook-signature.js",
     "v020:hostile": "node src/v020/run-hostile-fixtures.js",
-    "v020:report": "node src/v020/write-report-bundle.js"
+    "v020:report": "node src/v020/write-report-bundle.js",
+    "v020:readiness": "node src/v020/compile-readiness-artifact.js"
   },
   "engines": {
     "node": ">=20"
