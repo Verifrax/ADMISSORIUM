@@ -1,0 +1,137 @@
+{
+  "artifact": "ADMISSORIUM_V020_READINESS_ARTIFACT",
+  "schema_version": "0.2.0",
+  "state": "ADMISSORIUM_V020_READINESS_ARTIFACT_PASS",
+  "truth_warning": "NOT_TRUTH_SOURCE",
+  "completion_claim": false,
+  "readiness_scope": "report-only sealed admissibility control plane",
+  "ready_for": [
+    "operator review",
+    "report writers",
+    "history-bound local readiness evidence"
+  ],
+  "not_ready_for": [
+    "real GitHub writer",
+    "check-run writer",
+    "pull-request writer",
+    "issue writer",
+    "package publish",
+    "repository content mutation",
+    "protected truth mutation",
+    "VERIFRAX system completion claim"
+  ],
+  "writer_enabled": false,
+  "webhook_runtime_enabled": false,
+  "check_run_writer_enabled": false,
+  "pull_request_writer_enabled": false,
+  "issue_writer_enabled": false,
+  "package_publish_enabled": false,
+  "contents_write_enabled": false,
+  "operational_writer_enabled": false,
+  "network_required": false,
+  "token_persistence_enabled": false,
+  "allowed_to_mutate_truth": false,
+  "gates": [
+    {
+      "id": "schema_validation",
+      "command": "npm run v020:schema:validate",
+      "expected_token": "ADMISSORIUM_V020_OBJECT_SCHEMAS_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "classifier_comparator",
+      "command": "npm run v020:classify",
+      "expected_token": "ADMISSORIUM_V020_CLASSIFIER_COMPARATOR_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "actuator_verdict_receipt",
+      "command": "npm run v020:verdict",
+      "expected_token": "ADMISSORIUM_V020_ACTUATOR_VERDICT_RECEIPT_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "quarantine_repair",
+      "command": "npm run v020:quarantine",
+      "expected_token": "ADMISSORIUM_V020_QUARANTINE_REPAIR_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "operator_review_bundle",
+      "command": "npm run v020:operator-review",
+      "expected_token": "ADMISSORIUM_V020_OPERATOR_REVIEW_BUNDLE_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "test_mode_writer_simulation",
+      "command": "npm run v020:writer-sim",
+      "expected_token": "ADMISSORIUM_V020_TEST_MODE_WRITER_SIMULATION_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "webhook_signature_verification",
+      "command": "npm run v020:webhook",
+      "expected_token": "ADMISSORIUM_V020_WEBHOOK_SIGNATURE_VERIFICATION_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "hostile_fixture_battery",
+      "command": "npm run v020:hostile",
+      "expected_token": "ADMISSORIUM_V020_HOSTILE_FIXTURES_PASS=true",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    },
+    {
+      "id": "report_writers_history_binding",
+      "file": "reports/current/admissorium-v020-report-bundle.json",
+      "expected_token": "ADMISSORIUM_V020_REPORT_BUNDLE_PASS",
+      "passed": true,
+      "writer_enabled": false,
+      "network_required": false,
+      "token_persistence_enabled": false,
+      "operational_writer_enabled": false
+    }
+  ],
+  "totals": {
+    "total_gates": 9,
+    "passed_gates": 9,
+    "failed_gates": 0
+  },
+  "payload_hash_sha256": "9b3c618f89786951eb42e5aacf80a2b9cb5d28d6e0706a6fb7b3ca4ad4af3f8c",
+  "local_signature": {
+    "algorithm": "sha256-local-deterministic-readiness-seal",
+    "production_signature": false,
+    "signature": "1b2d76c1116e93c63e8182d524c8633c9468f7c0447a1b90996fe4944caa2b0e"
+  }
+}
