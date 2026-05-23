@@ -1,0 +1,50 @@
+name: ADMISSORIUM v0.2.0 release check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags:
+      - "admissorium-v020-release-check-*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v020-release-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Run v0.2.0 readiness proof
+        run: |
+          set -euo pipefail
+          npm run v020:readiness | tee /tmp/admissorium-v020-readiness.log
+          grep -q "ADMISSORIUM_V020_READINESS_ARTIFACT_PASS=true" /tmp/admissorium-v020-readiness.log
+          grep -q '"total_gates":9' /tmp/admissorium-v020-readiness.log
+          grep -q '"failed_gates":0' /tmp/admissorium-v020-readiness.log
+
+      - name: Run complete test battery
+        run: |
+          set -euo pipefail
+          find tests -type f -name '*.test.mjs' -print | sort | xargs node --test
+
+      - name: Assert generated drift is cleaned
+        run: |
+          set -euo pipefail
+          git restore reports/current/admissorium-v020-readiness.json || true
+          git clean -fdX reports/history || true
+          git status --short
+          test -z "$(git status --short)"
+
+      - name: Emit release-check token
+        run: |
+          echo "ADMISSORIUM_V020_RELEASE_CHECK_PASS=true"
+          echo "ADMISSORIUM_V020_RELEASE_CHECK_NO_REAL_WRITER=true"
+          echo "ADMISSORIUM_V020_RELEASE_CHECK_NO_TOKEN_PERSISTENCE=true"
+          echo "ADMISSORIUM_V020_RELEASE_CHECK_NO_TRUTH_MUTATION=true"
